@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/FrontEnd/static/resume.css" />
+  </head>
+  <body>
+    <div class="search">
+      <img src="/FrontEnd/src/img/search.svg" class="search-icon" />
+      <input
+        type="text"
+        name=""
+        class="search-input"
+        placeholder="Поиск резюме"
+      />
+      <button class="search-butt">Найти</button>
+    </div>
+
+    <div class="container-tags">
+      <div class="tag">
+        <p>Java</p>
+        <img src="/FrontEnd/src/img/krest.svg" alt="" />
+      </div>
+      <div class="tag">
+        <p>Java Script</p>
+        <img src="/FrontEnd/src/img/krest.svg" alt="" />
+      </div>
+      <div class="tag">
+        <p>Golang</p>
+        <img src="/FrontEnd/src/img/krest.svg" alt="" />
+      </div>
+      <div class="tag">
+        <p>C</p>
+        <img src="/FrontEnd/src/img/krest.svg" alt="" />
+      </div>
+      <div class="tag">
+        <p>C++</p>
+        <img src="/FrontEnd/src/img/krest.svg" alt="" />
+      </div>
+      <div class="tag">
+        <p>Python</p>
+        <img src="/FrontEnd/src/img/krest.svg" alt="" />
+      </div>
+      <div class="tag">
+        <p>Kotlin</p>
+        <img src="/FrontEnd/src/img/krest.svg" alt="" />
+      </div>
+      <div class="tag">
+        <p>SQL</p>
+        <img src="/FrontEnd/src/img/krest.svg" alt="" />
+      </div>
+    </div>
+
+    <div class="cont-create-res">
+      <button onclick="showPopup()" class="create-res">Создать резюме</button>
+    </div>
+
+    <div class="cont-filter">
+      <div class="filter">
+        <p class="filter-name">Курс</p>
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">1 курс</label>
+        </div>
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">2 курс</label>
+        </div>
+
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">3 курс</label>
+        </div>
+
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">4 курс</label>
+        </div>
+      </div>
+
+      <div class="filter">
+        <p class="filter-name">Специальность</p>
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">FrontEnd</label>
+        </div>
+
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">BackEnd</label>
+        </div>
+
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">FullStack</label>
+        </div>
+
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">Embedded</label>
+        </div>
+      </div>
+
+      <div class="filter">
+        <p class="filter-name">Статус</p>
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">Свободен</label>
+        </div>
+
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">Частично занят</label>
+        </div>
+
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">Полностью занят</label>
+        </div>
+
+        <div class="checkbox-cont">
+          <input type="checkbox" id="box" name="interest" value="coding" />
+          <label for="coding" class="curse">Ищу команду</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Обьявление чела -->
+    <div id="resume-container">
+      <div class="cont-resume">
+        <div>
+          <p class="resume-name">Frontend-разраб</p>
+          <p class="resume-descr">
+            Создаю быстрые и адаптивные веб-интерфейсы с использованием
+            современных технологий JavaScript
+          </p>
+          <div class="resume-tag">
+            <p>Java Script</p>
+          </div>
+        </div>
+        <button class="resume-butt">Откликнуться</button>
+      </div>
+    </div>
+
+    <div id="popup" class="popup-window">
+      <div class="popup-resume">
+        <p class="popup-name">Расскажите о себе</p>
+        <div class="popup-input">
+          <input
+            class="input-one"
+            type="text"
+            id="popup-title"
+            placeholder="Название"
+          />
+          <input
+            class="input-one"
+            type="text"
+            id="popup-descr"
+            placeholder="Ваши навыки"
+          />
+          <input
+            class="input-one"
+            type="text"
+            id="popup-kurs"
+            placeholder="Курс"
+          />
+          <input
+            class="input-one"
+            type="text"
+            id="popup-status"
+            placeholder="Статус"
+          />
+        </div>
+
+        <div class="pup-end">
+          <p class="pup-name">Теги</p>
+          <img class="pup-line" src="/src/img/pupline.svg" alt="" />
+        </div>
+
+        <div class="pup-tags">
+          <div class="pup-resume-tag">
+            <p>SQL</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>Kotlin</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>Golang</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>Ruby</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>Java Script</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>Python</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>Java</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>TypeScript</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>C#</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>PHP</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>C++</p>
+          </div>
+          <div class="pup-resume-tag">
+            <p>C</p>
+          </div>
+        </div>
+
+        <button class="popup-butt" id="create-res" onclick="createRes()">
+          Создать
+        </button>
+      </div>
+    </div>
+    <script src="/FrontEnd/static/script.js"></script>
+  </body>
+</html>

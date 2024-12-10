@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/FrontEnd/static/style.css" />
+  </head>
+  <body>
+    <div class="white-box">
+      <div class="top-content">
+        <p style="color: rgba(41, 95, 212, 1)">СЕРВИС ПОДБОРА</p>
+        <p class="second-cont">СОТРУДНИКОВ</p>
+      </div>
+      <img src="/FrontEnd/src/img/line.svg" alt="" />
+      <div class="bottom-content">
+        <p>
+          Это ваш надёжный помощник в поиске
+          <span style="color: rgba(41, 95, 212, 1)">профессионалов</span>,
+          идеально подходящих под ваши требования
+        </p>
+      </div>
+    </div>
+
+    <div class="container-login">
+      <div class="login-text">
+        <p class="first-text">Добро пожаловать!</p>
+        <p class="second-text">Мы рады тебя видеть здесь!</p>
+      </div>
+
+      <div class="input-login">
+        <input type="text" class="input" id="userName" placeholder="i23s00" />
+        <input
+          type="password"
+          class="input"
+          id="input"
+          placeholder="******"
+        /><img
+          src="/FrontEnd/src/img/hide.svg"
+          id="inputImg"
+          class="icon"
+          onclick="hide()"
+        />
+        <div class="login-button">
+          <button
+            class="login-butt"
+            onclick="window.location.href='./resume.html'"
+            id="login-butt"
+          >
+            Войти
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/FrontEnd/static/script.js"></script>
+  </body>
+</html>
