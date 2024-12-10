@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body style="background-image: url('../assets/images/Main-page-bg.png'); background-position: center center;">
+    <div class="main-container">
+        <h1>Выберите одно из интересующих вас<br> <span style="color: var(--main-purple);">резюме</span> или создайте своё</h1>
+        
+        <div class="navigation-bar">
+            <img src="../assets/images/loop.svg" alt="loop" class="input-icon">
+            <input type="text" placeholder="Найти резюме" class="filter-input">
+            <div class="create-cv">Создать резюме</div>
+            <img src="../assets/images/Profile-button-icon.svg" alt="profile button">
+        </div>
+
+        <div class="content-block">
+            <div class="filters-block">
+                <div class="tags-block">
+                    <h2>Поиск по тегам</h2>
+                    <div class="tags-grid">
+                        <div class="tag">#HTML/CSS</div>
+                        <div class="tag">#JavaScript</div>
+                        <div class="tag">#React</div>
+                        <div class="tag">#GoLang</div>
+                        <div class="tag">#Java</div>
+                        <div class="tag">#C/C#</div>
+                        <div class="tag">#C++</div>
+                        <div class="tag">#Web</div>
+                        <div class="tag">#UX/UI</div>
+                    </div>
+                </div>
+
+                <div class="course-block">
+                    <h3>Курс</h3>
+                    
+                    <input type="checkbox" class="filter-checkbox" id="fst"value="yes">
+                    <label for="fst">1 курс</label>
+                    <input type="checkbox" class="filter-checkbox" id="snd"value="yes">
+                    <label for="snd">2 курс</label>
+                    <input type="checkbox" class="filter-checkbox" id="trd"value="yes">
+                    <label for="trd">3 курс</label>
+                    <input type="checkbox" class="filter-checkbox" id="fth"value="yes">
+                    <label for="fth">4 курс</label>
+                </div>
+
+                <div class="spec-block">
+                    <h3>Специальность</h3>
+
+                    <input type="checkbox" class="filter-checkbox" id="front"value="yes">
+                    <label for="front">FrontEnd</label>
+                    <input type="checkbox" class="filter-checkbox" id="back"value="yes">
+                    <label for="back">BackEnd</label>
+                    <input type="checkbox" class="filter-checkbox" id="des"value="yes">
+                    <label for="des">Design</label>
+                    <input type="checkbox" class="filter-checkbox" id="pm"value="yes">
+                    <label for="pm">PM</label>
+                    <input type="checkbox" class="filter-checkbox" id="sys"value="yes">
+                    <label for="sys">SysAdm</label>
+                    <input type="checkbox" class="filter-checkbox" id="game"value="yes">
+                    <label for="game">GameDev</label>
+                    <input type="checkbox" class="filter-checkbox" id="trd"value="yes">
+                </div>
+            </div>
+
+            <div class="cv-block">
+                <div class="drop-down-filter">
+                    <div>Самые свежие</div>
+                    <div class="direction-pointer">
+                        <img src="../assets/images/right-filter-arrow.svg" alt="arr" style="top: 0;">
+                        <img src="../assets/images/right-filter-arrow.svg" alt="arr" style="transform: rotate(180deg); bottom: 0;">
+                    </div>
+                </div>
+
+                <div class="cv-container"></div>
+                <div class="cv-container"></div>
+                <div class="cv-container"></div>
+                <div class="cv-container"></div>
+                <div class="cv-container"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
