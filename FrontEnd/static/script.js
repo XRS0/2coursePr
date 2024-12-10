@@ -80,3 +80,7 @@ function createRes() {
 
   document.getElementById("popup").classList.remove("active");
 }
+
+document.getElementById("login-butt").addEventListener("click", function () {
+  window.location.href = "resume.html";
+});
