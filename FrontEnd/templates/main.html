@@ -23,15 +23,15 @@
                 <div class="tags-block">
                     <h2>Поиск по тегам</h2>
                     <div class="tags-grid">
-                        <div class="tag">#HTML/CSS</div>
-                        <div class="tag">#JavaScript</div>
-                        <div class="tag">#React</div>
-                        <div class="tag">#GoLang</div>
-                        <div class="tag">#Java</div>
-                        <div class="tag">#C/C#</div>
-                        <div class="tag">#C++</div>
-                        <div class="tag">#Web</div>
-                        <div class="tag">#UX/UI</div>
+                        <div class="tag disabled-tag" data-color="rgba(0, 112, 255, 1)" onclick="enableTag(this)">#HTML/CSS</div>
+                        <div class="tag disabled-tag" data-color="rgba(255, 149, 0, 1)" onclick="enableTag(this)">#JavaScript</div>
+                        <div class="tag disabled-tag" data-color="rgba(255, 0, 102, 1)" onclick="enableTag(this)">#React</div>
+                        <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#GoLang</div>
+                        <div class="tag disabled-tag" data-color="rgba(255, 246, 0, 1)" onclick="enableTag(this)">#Java</div>
+                        <div class="tag disabled-tag" data-color="rgba(0, 255, 9, 1)" onclick="enableTag(this)">#C/C#</div>
+                        <div class="tag disabled-tag" data-color="rgba(255, 0, 0, 1)" onclick="enableTag(this)">#C++</div>
+                        <div class="tag disabled-tag" data-color="rgba(149, 255, 0, 1)" onclick="enableTag(this)">#Web</div>
+                        <div class="tag disabled-tag" data-color="rgba(255, 0, 200, 1)" onclick="enableTag(this)">#UX/UI</div>
                     </div>
                 </div>
 
@@ -68,21 +68,148 @@
             </div>
 
             <div class="cv-block">
-                <div class="drop-down-filter">
-                    <div>Самые свежие</div>
-                    <div class="direction-pointer">
-                        <img src="../assets/images/right-filter-arrow.svg" alt="arr" style="top: 0;">
-                        <img src="../assets/images/right-filter-arrow.svg" alt="arr" style="transform: rotate(180deg); bottom: 0;">
+                <div class="shadow-block"></div>
+
+                <div class="dropdown-filter">
+                    <div class="dropdown-button">
+                        <div class="dropdown-text">Самые свежие</div>
+                        <div class="direction-pointer">
+                            <img src="../assets/images/right-filter-arrow.svg" id="filter-up" style="top: 0;" >
+                            <img src="../assets/images/right-filter-arrow.svg" id="filter-down" style="transform: rotate(180deg); bottom: 0;">
+                        </div>
                     </div>
+
+                    <ul class="dropdown-list">
+                        <li class="dropdown-list-item" id="new">
+                            <div class="item-row">
+                                Самые свежие <img src="../assets/images/filter-option-arrow.svg">
+                            </div>
+                            <div class="sep-line"></div>
+                        </li>
+                        <li class="dropdown-list-item" id="old">
+                            <div class="item-row">
+                                Самые свежие <img src="../assets/images/filter-option-arrow.svg" style="transform: rotate(180deg);">
+                            </div>
+                            <div class="sep-line"></div>
+                        </li>
+                        <li class="dropdown-list-item" id="new">
+                            <div class="item-row">
+                                Курс обучения <img src="../assets/images/filter-option-arrow.svg">
+                            </div>
+                            <div class="sep-line"></div>
+                        </li>
+                        <li class="dropdown-list-item" id="old">
+                            <div class="item-row">
+                                Курс обучения <img src="../assets/images/filter-option-arrow.svg" style="transform: rotate(180deg);">
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="cv-container"></div>
-                <div class="cv-container"></div>
-                <div class="cv-container"></div>
-                <div class="cv-container"></div>
-                <div class="cv-container"></div>
+                <div class="cv-scroll-block">
+                    <div class="cv-container">
+                        <div class="main-part">
+                            <img src="../assets/images/user-avatar.svg" alt="user">
+                            <div class="info">
+                                <div class="title">
+                                    <h2>Прекрасный Бэк под ключ</h2>
+                                    <div class="small-tag tag" style="color: #FFF600; background-color: #222313;">#Java</div>
+                                    <div class="small-tag tag" style="color: #FF0066; background-color: #231319;">#React</div>
+                                </div>
+                                
+                                <div class="date">
+                                    <span style="color: var(--main-purple);">2 курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
+                                </div>
+                                <div class="spec">FrontEnd Developer</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-name">
+                            <div class="title">Имя работника</div>
+                            <div class="executor">Пьянков Максим</div>
+                        </div>
+                        
+                        <div class="sep-line"></div>
+
+                        <div class="profile-name" style="margin-top: 35px;">
+                            <div class="title">Информация о работнике</div>
+                            <div class="description">
+                                Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более
+                                или менее стандартное заполнение шаблона.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-container">
+                        <div class="main-part">
+                            <img src="../assets/images/user-avatar.svg" alt="user">
+                            <div class="info">
+                                <div class="title">
+                                    <h2>Прекрасный Бэк под ключ</h2>
+                                    <div class="small-tag tag" style="color: #FFF600; background-color: #222313;">#Java</div>
+                                    <div class="small-tag tag" style="color: #FF0066; background-color: #231319;">#React</div>
+                                </div>
+                                
+                                <div class="date">
+                                    <span style="color: var(--main-purple);">2 курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
+                                </div>
+                                <div class="spec">FrontEnd Developer</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-name">
+                            <div class="title">Имя работника</div>
+                            <div class="executor">Пьянков Максим</div>
+                        </div>
+                        
+                        <div class="sep-line"></div>
+
+                        <div class="profile-name" style="margin-top: 35px;">
+                            <div class="title">Информация о работнике</div>
+                            <div class="description">
+                                Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более
+                                или менее стандартное заполнение шаблона.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-container">
+                        <div class="main-part">
+                            <img src="../assets/images/user-avatar.svg" alt="user">
+                            <div class="info">
+                                <div class="title">
+                                    <h2>Прекрасный Бэк под ключ</h2>
+                                    <div class="small-tag tag" style="color: #FFF600; background-color: #222313;">#Java</div>
+                                    <div class="small-tag tag" style="color: #FF0066; background-color: #231319;">#React</div>
+                                </div>
+                                
+                                <div class="date">
+                                    <span style="color: var(--main-purple);">2 курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
+                                </div>
+                                <div class="spec">FrontEnd Developer</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-name">
+                            <div class="title">Имя работника</div>
+                            <div class="executor">Пьянков Максим</div>
+                        </div>
+                        
+                        <div class="sep-line"></div>
+
+                        <div class="profile-name" style="margin-top: 35px;">
+                            <div class="title">Информация о работнике</div>
+                            <div class="description">
+                                Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более
+                                или менее стандартное заполнение шаблона.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="../static/main.js"></script>
 </body>
 </html>
