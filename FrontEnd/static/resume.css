@@ -169,9 +169,7 @@ body {
   width: 60%;
   min-height: 80vh;
   padding: 20px;
-  margin-top: -51.8%;
   z-index: 1;
-  margin-left: 32%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -344,4 +342,8 @@ select.input-one {
   width: 20%;
   margin-left: 78%;
   margin-top: -15%;
+}
+
+.main {
+  display: flex;
 }
