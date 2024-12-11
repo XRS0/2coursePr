@@ -50,6 +50,7 @@ function createRes() {
   let descr = document.getElementById("popup-descr").value;
   let kurs = document.getElementById("popup-kurs").value;
   let status = document.getElementById("popup-status").value;
+  let tag = document.getElementsByClassName("pup-resume-tag").value;
 
   if (!title || !descr || !kurs || !status) {
     alert("Заполните все поля");
@@ -64,10 +65,10 @@ function createRes() {
             ${descr}
           </p>
           <div class="resume-tag">
-            <p></p>
+          
           </div>
         </div>
-        <button class="resume-butt">Откликнуться</button>
+        <button class="resume-butt">Перейти в профиль</button>
       </div>`;
 
   let resumeContainer = document.getElementById("resume-container");
@@ -77,10 +78,18 @@ function createRes() {
   document.getElementById("popup-descr").value = "";
   document.getElementById("popup-kurs").value = "";
   document.getElementById("popup-status").value = "";
-
   document.getElementById("popup").classList.remove("active");
 }
 
+//Переход на другую страницу
 document.getElementById("login-butt").addEventListener("click", function () {
   window.location.href = "resume.html";
 });
+
+function highlight(element) {
+  element.classList.add("highlighted");
+}
+
+function highlight(element) {
+  element.classList.toggle("highlighted");
+}
