@@ -61,6 +61,7 @@ function createRes() {
     return;
   }
 
+  //Отправил данные о созданном резюме
   const resume = { title, descr, kurs, status, tag };
   fetch(url, {
     method: "POST",
@@ -103,3 +104,32 @@ function highlight(element) {
 function highlight(element) {
   element.classList.toggle("highlighted");
 }
+
+//Отправил данные о фильтрации
+document
+  .getElementsByClassName("search-butt")
+  .addEventListener("click", function () {
+    let selectCourse = Array.from(
+      document.querySelectorAll('input[name="course"]:checked')
+    ).map((checkbox) => checkbox.value);
+    let selectSpeciality = Array.from(
+      document.querySelectorAll('input[name="spec"]:checked')
+    ).map((checkbox) => checkbox.value);
+    let selectStatus = Array.from(
+      document.querySelectorAll('input[name="status"]:checked')
+    ).map((checkbox) => checkbox.value);
+  });
+
+const filterData = {
+  courses: selectCourse,
+  speciality: selectSpeciality,
+  status: selectStatus,
+};
+
+fetch(url, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application.json",
+  },
+  body: JSON.stringify(filterData),
+});
