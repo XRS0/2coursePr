@@ -30,7 +30,6 @@ createUser({
     status: 'active'
 });
 
-
 async function getAllUsers() {
     try {
         const response = await fetch('http://localhost:8080/api/users', {
@@ -49,8 +48,7 @@ async function getAllUsers() {
 }
 
 // Пример использования:
-getAllUsers();
-
+getAllUsers();  // имба спасибо
 
 async function updateUser(uuid, updatedData) {
     try {
@@ -79,7 +77,6 @@ updateUser('123e4567-e89b-12d3-a456-426614174000', {
     course: 'Advanced Programming'
 });
 
-
 async function deleteUser(uuid) {
     try {
         const response = await fetch(`http://localhost:8080/api/users/${uuid}`, {
@@ -98,7 +95,6 @@ async function deleteUser(uuid) {
 
 // Пример использования:
 deleteUser('123e4567-e89b-12d3-a456-426614174000');
-
 
 async function createCV(cvData) {
     try {
