@@ -6,6 +6,7 @@ import (
 	"second/internal/handlers/resumeHandler"
 	"second/internal/handlers/userHandler"
 	"second/internal/models"
+	"second/internal/webServer/handlers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -30,18 +31,20 @@ func main() {
 	}
 
 	// Пример: Создание резюме для пользователя
-	cv := models.CV{
+	cv := &models.CV{
 		CVID:    "456e1237-e89b-12d3-a456-426614174000",
-		UserID:  user.UUID,
+		UserID:  "123e4567-e89b-12d3-a456-426614174000",
 		Title:   "Golang Developer",
 		Spec:    "Backend Development",
-		Tags:    "Golang, Microservices, REST",
+		Tags:    []string{"Golang", "Microservices", "REST"}, // Передаем массив строк
 		AboutMe: "Experienced Go developer.",
 	}
 
-	err = resumeHandler.CreateCV(&cv, DB)
+	err = resumeHandler.CreateCV(cv, DB)
 	if err != nil {
-		log.Fatalf("Ошибка создания резюме: %v", err)
+		log.Println("Ошибка создания резюме:", err)
+	} else {
+		log.Println("Резюме успешно создано!")
 	}
 
 	// Пример: Получение пользователя с его резюме
@@ -69,22 +72,28 @@ func main() {
 		log.Fatalf("Ошибка удаления пользователя: %v", err)
 	}
 
+	handler := &handlers.Handler{
+		DB: DB,
+	}
+
+	// Инициализация Gin
 	r := gin.Default()
 
 	// Роуты для пользователей
-	r.POST("/users", CreateUser)
-	r.GET("/users", GetAllUsers)
-	r.GET("/users/:uuid", GetUserByUUID)
-	r.PATCH("/users/:uuid", UpdateUser)
-	r.DELETE("/users/:uuid", DeleteUser)
+	r.POST("/users", handler.CreateUserHandler)
+	r.GET("/users", handler.GetAllUsersHandler)
+	r.GET("/users/:uuid", handler.GetUserByUUIDHandler)
+	r.PATCH("/users/:uuid", handler.UpdateUserHandler)
+	r.DELETE("/users/:uuid", handler.DeleteUserHandler)
 
 	// Роуты для резюме
-	r.POST("/cvs", CreateCV)
-	r.GET("/cvs", GetAllCVs)
-	r.GET("/cvs/:cvid", GetCVByID)
-	r.PATCH("/cvs/:cvid", UpdateCV)
-	r.DELETE("/cvs/:cvid", DeleteCV)
+	r.POST("/cvs", handler.CreateCVHandler)
+	r.GET("/cvs", handler.GetAllCVsHandler)
+	r.GET("/cvs/:cvid", handler.GetCVByIDHandler)
+	r.PATCH("/cvs/:cvid", handler.UpdateCVHandler)
+	r.DELETE("/cvs/:cvid", handler.DeleteCVHandler)
 
 	// Запуск сервера
 	r.Run(":8080")
+
 }

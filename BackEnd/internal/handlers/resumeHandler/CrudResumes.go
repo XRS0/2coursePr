@@ -11,6 +11,12 @@ func CreateCV(cv *models.CV, db *gorm.DB) error {
 	return result.Error
 }
 
+func GetAllCVs(db *gorm.DB) ([]models.CV, error) {
+	var cvs []models.CV
+	err := db.Find(&cvs).Error
+	return cvs, err
+}
+
 func GetCVByID(cvid string, db *gorm.DB) (*models.CV, error) {
 	var cv models.CV
 	result := db.First(&cv, "cvid = ?", cvid)
