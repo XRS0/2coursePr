@@ -140,14 +140,14 @@ body {
 }
 
 .cont-resume {
-  height: 250px;
+  height: 320px;
   border: 1px solid white;
   background-color: white;
   border-radius: 10px;
 }
 
 .cont-resume-new {
-  height: 250px;
+  height: 310px;
   border: 1px solid white;
   background-color: white;
   border-radius: 10px;
@@ -197,12 +197,16 @@ body {
   background-color: rgba(41, 95, 212, 1);
   color: white;
   padding: 15px;
-  margin-left: 3%;
-  margin-top: 3%;
   font-size: 18px;
   font-family: "Roboto-Medium";
   border-radius: 10px;
   border: 1px solid rgba(41, 95, 212, 1);
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  margin-top: 2%;
+  margin-left: 3%;
 }
 
 .popup-window {

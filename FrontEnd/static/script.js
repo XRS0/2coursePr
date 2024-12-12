@@ -14,23 +14,27 @@ function hide() {
   }
 }
 
-//Массив Users(name, пароль)
+//Отправка логина, пароля
 var users = [];
-class User {
-  constructor(username, password) {
-    this.username = username;
-    this.password = password;
-  }
-}
 
 let inputUser = document.getElementById("userName");
 let inputPassword = document.getElementById("input");
 
-let login = document.getElementById("login-butt");
-login.onclick = function () {
-  users.push(new User(inputUser.value, inputPassword.value));
-  console.log(users);
-};
+function sendData() {
+  const UserData = {
+    name: inputUser.value,
+    password: inputPassword.value,
+  };
+  users.push(UserData);
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Contetn-Type": "aplication/json",
+    },
+    body: JSON.stringify(UserData),
+  });
+}
 
 //Открыть Pop-up, закрыть
 function showPopup() {
@@ -57,6 +61,15 @@ function createRes() {
     return;
   }
 
+  const resume = { title, descr, kurs, status, tag };
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "aplication/json",
+    },
+    body: JSON.stringify(resume),
+  });
+
   let newAnn = document.createElement("div");
   newAnn.classList.add("cont-resume-new");
   newAnn.innerHTML = `<div>
@@ -64,11 +77,13 @@ function createRes() {
           <p class="resume-descr">
             ${descr}
           </p>
+          <p class="resume-descr">Курс: ${kurs}</p>
+            <p class="resume-descr">Статус: ${status}</p>
           <div class="resume-tag">
-          
+          <p>JS</p>
           </div>
+          <a href="profile.html" class="resume-butt">Перейти в профиль</a>
         </div>
-        <button class="resume-butt">Перейти в профиль</button>
       </div>`;
 
   let resumeContainer = document.getElementById("resume-container");
@@ -80,11 +95,6 @@ function createRes() {
   document.getElementById("popup-status").value = "";
   document.getElementById("popup").classList.remove("active");
 }
-
-//Переход на другую страницу
-document.getElementById("login-butt").addEventListener("click", function () {
-  window.location.href = "resume.html";
-});
 
 function highlight(element) {
   element.classList.add("highlighted");
