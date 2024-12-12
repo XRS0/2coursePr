@@ -1,0 +1,170 @@
+.cv-popup-block {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    transition: opacity 0.15s;
+    pointer-events: none;
+    opacity: 0;
+    z-index: -1;
+}
+
+.cv-popup {
+    height: 80.5vh;
+    max-width: 620px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    border-radius: 20px;
+    background-color: var(--background-black);
+    border: 2px solid #505050;
+    overflow: hidden;
+
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    transform: translateY(-40px);
+    transition: transform 0.25s ease;
+}
+
+.cv-popup-block.open , .cv-popup.open {
+    pointer-events: all;
+    z-index: 3;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.cv-popup .title {
+    display: flex;
+    align-items: center;
+    font-family: "Unbounded", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+.cv-popup .title img {
+    margin-left: 15px;
+    border-radius: 5px;
+}
+
+.popup-content {
+    width: 100%;
+}
+
+.input-field {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    float: left;
+    white-space: nowrap;
+}
+
+.input-title {
+    float: left;
+    width: 100%;
+    margin-bottom: 0.375rem;
+}
+
+.input-field input {
+    height: 44px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white);
+    border: 1.5px solid #505050;
+    border-radius: 8px;
+    background-color: #141414;
+    float: left;
+    padding: 15px 10px;
+}
+
+.input-field input::placeholder, .input-field textarea::placeholder {
+    font-family: "Comfortaa";
+    font-weight: 500;
+    font-size: 12px;
+    color: #8D8D8D;
+}
+
+.input-field input:hover {
+    border-color: #707070;
+}
+
+.input-field input:focus {
+    border-color: var(--main-purple);
+}
+
+.input-field textarea {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    width: 100%;
+    height: 8rem;
+    float: left;
+    resize: none;
+    outline: none;
+    appearance: none;
+    color: var(--white);
+    background-color: #141414;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1.5px solid #505050;
+}
+
+.checkboxes-tags-block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.popup-content .tags-block {
+    width: 50%;
+}
+
+.popup-content .tags-block h2 {
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.popup-content .tags-grid {
+    margin: 0;
+}
+
+.popup-content .spec-block {
+    width: 50%;
+}
+
+.popup-content .spec-block h3 {
+    margin: 0 0 5px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    float: left;
+}
+
+.checkboxes {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+}
+
+.checkboxes label {
+    margin-inline: 0 15px;
+}
+
+.cv-popup .create-cv {
+    margin: 0;
+}

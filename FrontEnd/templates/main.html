@@ -5,211 +5,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
 
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/main-page.css">
+    <link rel="stylesheet" href="../static/styles/resume.css">
 </head>
 <body style="background-image: url('../assets/images/Main-page-bg.png'); background-position: center center;">
-    <div class="main-container">
-        <h1>Выберите одно из интересующих вас<br> <span style="color: var(--main-purple);">резюме</span> или создайте своё</h1>
-        
-        <div class="navigation-bar">
-            <img src="../assets/images/loop.svg" alt="loop" class="input-icon">
-            <input type="text" placeholder="Найти резюме" class="filter-input">
-            <div class="create-cv">Создать резюме</div>
-            <img src="../assets/images/Profile-button-icon.svg" alt="profile button">
-        </div>
-
-        <div class="content-block">
-            <div class="filters-block">
-                <div class="tags-block">
-                    <h2>Поиск по тегам</h2>
-                    <div class="tags-grid">
-                        <div class="tag disabled-tag" data-color="rgba(0, 112, 255, 1)" onclick="enableTag(this)">#HTML/CSS</div>
-                        <div class="tag disabled-tag" data-color="rgba(255, 149, 0, 1)" onclick="enableTag(this)">#JavaScript</div>
-                        <div class="tag disabled-tag" data-color="rgba(255, 0, 102, 1)" onclick="enableTag(this)">#React</div>
-                        <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#GoLang</div>
-                        <div class="tag disabled-tag" data-color="rgba(255, 246, 0, 1)" onclick="enableTag(this)">#Java</div>
-                        <div class="tag disabled-tag" data-color="rgba(0, 255, 9, 1)" onclick="enableTag(this)">#C/C#</div>
-                        <div class="tag disabled-tag" data-color="rgba(255, 0, 0, 1)" onclick="enableTag(this)">#C++</div>
-                        <div class="tag disabled-tag" data-color="rgba(149, 255, 0, 1)" onclick="enableTag(this)">#Web</div>
-                        <div class="tag disabled-tag" data-color="rgba(255, 0, 200, 1)" onclick="enableTag(this)">#UX/UI</div>
-                    </div>
-                </div>
-
-                <div class="course-block">
-                    <h3>Курс</h3>
-                    
-                    <input type="checkbox" class="filter-checkbox" id="fst"value="yes">
-                    <label for="fst">1 курс</label>
-                    <input type="checkbox" class="filter-checkbox" id="snd"value="yes">
-                    <label for="snd">2 курс</label>
-                    <input type="checkbox" class="filter-checkbox" id="trd"value="yes">
-                    <label for="trd">3 курс</label>
-                    <input type="checkbox" class="filter-checkbox" id="fth"value="yes">
-                    <label for="fth">4 курс</label>
-                </div>
-
-                <div class="spec-block">
-                    <h3>Специальность</h3>
-
-                    <input type="checkbox" class="filter-checkbox" id="front"value="yes">
-                    <label for="front">FrontEnd</label>
-                    <input type="checkbox" class="filter-checkbox" id="back"value="yes">
-                    <label for="back">BackEnd</label>
-                    <input type="checkbox" class="filter-checkbox" id="des"value="yes">
-                    <label for="des">Design</label>
-                    <input type="checkbox" class="filter-checkbox" id="pm"value="yes">
-                    <label for="pm">PM</label>
-                    <input type="checkbox" class="filter-checkbox" id="sys"value="yes">
-                    <label for="sys">SysAdm</label>
-                    <input type="checkbox" class="filter-checkbox" id="game"value="yes">
-                    <label for="game">GameDev</label>
-                    <input type="checkbox" class="filter-checkbox" id="trd"value="yes">
-                </div>
+    <div id="root">
+        <div class="main-container">
+            <h1>Выберите одно из интересующих вас<br> <span style="color: var(--main-purple);">резюме</span> или создайте своё</h1>
+            
+            <div class="navigation-bar">
+                <img src="../assets/images/loop.svg" alt="loop" class="input-icon">
+                <input type="text" placeholder="Найти резюме" class="filter-input">
+                <div class="create-cv" onclick="openResume(1)">Создать резюме</div>
+                <img src="../assets/images/Profile-button-icon.svg" alt="profile button">
             </div>
-
-            <div class="cv-block">
-                <div class="shadow-block"></div>
-
-                <div class="dropdown-filter">
-                    <div class="dropdown-button">
-                        <div class="dropdown-text">Самые свежие</div>
-                        <div class="direction-pointer">
-                            <img src="../assets/images/right-filter-arrow.svg" id="filter-up" style="top: 0;" >
-                            <img src="../assets/images/right-filter-arrow.svg" id="filter-down" style="transform: rotate(180deg); bottom: 0;">
+    
+            <div class="content-block">
+                <div class="filters-block">
+                    <div class="tags-block">
+                        <h2>Поиск по тегам</h2>
+                        <div class="tags-grid">
+                            <div class="tag disabled-tag" data-color="rgba(0, 112, 255, 1)" onclick="enableTag(this)">#HTML/CSS</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 149, 0, 1)" onclick="enableTag(this)">#JavaScript</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 0, 102, 1)" onclick="enableTag(this)">#React</div>
+                            <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#GoLang</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 246, 0, 1)" onclick="enableTag(this)">#Java</div>
+                            <div class="tag disabled-tag" data-color="rgba(0, 255, 9, 1)" onclick="enableTag(this)">#C/C#</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 0, 0, 1)" onclick="enableTag(this)">#C++</div>
+                            <div class="tag disabled-tag" data-color="rgba(149, 255, 0, 1)" onclick="enableTag(this)">#Web</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 0, 200, 1)" onclick="enableTag(this)">#UX/UI</div>
                         </div>
                     </div>
-
-                    <ul class="dropdown-list">
-                        <li class="dropdown-list-item" id="new">
-                            <div class="item-row">
-                                Самые свежие <img src="../assets/images/filter-option-arrow.svg">
-                            </div>
-                            <div class="sep-line"></div>
-                        </li>
-                        <li class="dropdown-list-item" id="old">
-                            <div class="item-row">
-                                Самые свежие <img src="../assets/images/filter-option-arrow.svg" style="transform: rotate(180deg);">
-                            </div>
-                            <div class="sep-line"></div>
-                        </li>
-                        <li class="dropdown-list-item" id="new">
-                            <div class="item-row">
-                                Курс обучения <img src="../assets/images/filter-option-arrow.svg">
-                            </div>
-                            <div class="sep-line"></div>
-                        </li>
-                        <li class="dropdown-list-item" id="old">
-                            <div class="item-row">
-                                Курс обучения <img src="../assets/images/filter-option-arrow.svg" style="transform: rotate(180deg);">
-                            </div>
-                        </li>
-                    </ul>
+    
+                    <div class="course-block">
+                        <h3>Курс</h3>
+                        
+                        <input type="checkbox" class="filter-checkbox" id="fst"value="yes">
+                        <label for="fst">1 курс</label>
+                        <input type="checkbox" class="filter-checkbox" id="snd"value="yes">
+                        <label for="snd">2 курс</label>
+                        <input type="checkbox" class="filter-checkbox" id="trd"value="yes">
+                        <label for="trd">3 курс</label>
+                        <input type="checkbox" class="filter-checkbox" id="fth"value="yes">
+                        <label for="fth">4 курс</label>
+                    </div>
+    
+                    <div class="spec-block">
+                        <h3>Специальность</h3>
+    
+                        <input type="checkbox" class="filter-checkbox" id="front"value="yes">
+                        <label for="front">FrontEnd</label>
+                        <input type="checkbox" class="filter-checkbox" id="back"value="yes">
+                        <label for="back">BackEnd</label>
+                        <input type="checkbox" class="filter-checkbox" id="des"value="yes">
+                        <label for="des">Design</label>
+                        <input type="checkbox" class="filter-checkbox" id="pm"value="yes">
+                        <label for="pm">PM</label>
+                        <input type="checkbox" class="filter-checkbox" id="sys"value="yes">
+                        <label for="sys">SysAdm</label>
+                        <input type="checkbox" class="filter-checkbox" id="game"value="yes">
+                        <label for="game">GameDev</label>
+                        <input type="checkbox" class="filter-checkbox" id="trd"value="yes">
+                    </div>
                 </div>
-
-                <div class="cv-scroll-block">
-                    <div class="cv-container">
-                        <div class="main-part">
-                            <img src="../assets/images/user-avatar.svg" alt="user">
-                            <div class="info">
-                                <div class="title">
-                                    <h2>Прекрасный Бэк под ключ</h2>
-                                    <div class="small-tag tag" style="color: #FFF600; background-color: #222313;">#Java</div>
-                                    <div class="small-tag tag" style="color: #FF0066; background-color: #231319;">#React</div>
-                                </div>
-                                
-                                <div class="date">
-                                    <span style="color: var(--main-purple);">2 курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
-                                </div>
-                                <div class="spec">FrontEnd Developer</div>
+    
+                <div class="cv-block"> 
+                    <div class="dropdown-filter">
+                        <div class="dropdown-button">
+                            <div class="dropdown-text">Самые свежие</div>
+                            <div class="direction-pointer">
+                                <img src="../assets/images/right-filter-arrow.svg" id="filter-up" style="top: 0;" >
+                                <img src="../assets/images/right-filter-arrow.svg" id="filter-down" style="transform: rotate(180deg); bottom: 0;">
                             </div>
                         </div>
-
-                        <div class="profile-name">
-                            <div class="title">Имя работника</div>
-                            <div class="executor">Пьянков Максим</div>
-                        </div>
-                        
-                        <div class="sep-line"></div>
-
-                        <div class="profile-name" style="margin-top: 35px;">
-                            <div class="title">Информация о работнике</div>
-                            <div class="description">
-                                Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более
-                                или менее стандартное заполнение шаблона.
+    
+                        <ul class="dropdown-list">
+                            <li class="dropdown-list-item" id="new">
+                                <div class="item-row">
+                                    Самые свежие <img src="../assets/images/filter-option-arrow.svg">
+                                </div>
+                                <div class="sep-line"></div>
+                            </li>
+                            <li class="dropdown-list-item" id="old">
+                                <div class="item-row">
+                                    Самые свежие <img src="../assets/images/filter-option-arrow.svg" style="transform: rotate(180deg);">
+                                </div>
+                                <div class="sep-line"></div>
+                            </li>
+                            <li class="dropdown-list-item" id="new">
+                                <div class="item-row">
+                                    Курс обучения <img src="../assets/images/filter-option-arrow.svg">
+                                </div>
+                                <div class="sep-line"></div>
+                            </li>
+                            <li class="dropdown-list-item" id="old">
+                                <div class="item-row">
+                                    Курс обучения <img src="../assets/images/filter-option-arrow.svg" style="transform: rotate(180deg);">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="cv-scroll-block">
+                        <div class="cv-container">
+                            <div class="main-part">
+                                <img src="../assets/images/user-avatar.svg" alt="user">
+                                <div class="info">
+                                    <div class="title">
+                                        <h2 class="preview-resume-data">Прекрасный Бэк под ключ</h2>
+                                        <div class="small-tag tag" style="color: #FFF600; background-color: #222313;">#Java</div>
+                                        <div class="small-tag tag" style="color: #FF0066; background-color: #231319;">#React</div>
+                                    </div>
+                                    
+                                    <div class="date">
+                                        <span style="color: var(--main-purple);">2 курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
+                                    </div>
+                                    <div class="spec">FrontEnd Developer</div>
+                                </div>
+                            </div>
+    
+                            <div class="profile-name">
+                                <div class="title">Имя работника</div>
+                                <div class="executor">Пьянков Максим</div>
+                            </div>
+                            
+                            <div class="sep-line"></div>
+    
+                            <div class="profile-name" style="margin-top: 35px;">
+                                <div class="title">Информация о работнике</div>
+                                <div class="description" class="preview-resume-data">
+                                    Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более
+                                    или менее стандартное заполнение шаблона.
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="cv-container">
-                        <div class="main-part">
-                            <img src="../assets/images/user-avatar.svg" alt="user">
-                            <div class="info">
-                                <div class="title">
-                                    <h2>Прекрасный Бэк под ключ</h2>
-                                    <div class="small-tag tag" style="color: #FFF600; background-color: #222313;">#Java</div>
-                                    <div class="small-tag tag" style="color: #FF0066; background-color: #231319;">#React</div>
-                                </div>
-                                
-                                <div class="date">
-                                    <span style="color: var(--main-purple);">2 курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
-                                </div>
-                                <div class="spec">FrontEnd Developer</div>
+                    <div class="cv-popup-block">
+                        <div class="cv-popup">
+                            <div class="title">
+                                Cоздание резюме
+                                <img src="../assets/images/resume-title-icon.svg">
                             </div>
-                        </div>
-
-                        <div class="profile-name">
-                            <div class="title">Имя работника</div>
-                            <div class="executor">Пьянков Максим</div>
-                        </div>
-                        
-                        <div class="sep-line"></div>
-
-                        <div class="profile-name" style="margin-top: 35px;">
-                            <div class="title">Информация о работнике</div>
-                            <div class="description">
-                                Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более
-                                или менее стандартное заполнение шаблона.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cv-container">
-                        <div class="main-part">
-                            <img src="../assets/images/user-avatar.svg" alt="user">
-                            <div class="info">
-                                <div class="title">
-                                    <h2>Прекрасный Бэк под ключ</h2>
-                                    <div class="small-tag tag" style="color: #FFF600; background-color: #222313;">#Java</div>
-                                    <div class="small-tag tag" style="color: #FF0066; background-color: #231319;">#React</div>
+                            
+                            <div class="popup-content">
+                                <div class="input-field">
+                                    <div class="input-title">Заголовок резюме</div>
+                                    <input type="text" placeholder="Название резюме" class="resume-input">
                                 </div>
-                                
-                                <div class="date">
-                                    <span style="color: var(--main-purple);">2 курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
+    
+                                <div class="input-field">
+                                    <div class="input-title">Контактные данные</div>
+                                    <input type="text" placeholder="Почта или номер" class="resume-input">
                                 </div>
-                                <div class="spec">FrontEnd Developer</div>
-                            </div>
-                        </div>
+                                <div class="checkboxes-tags-block">
+                                    <div class="tags-block">
+                                        <h2>Поиск по тегам</h2>
+                                        <div class="tags-grid">
+                                            <div class="tag disabled-tag" data-color="rgba(0, 112, 255, 1)" onclick="enableTag(this)">#HTML/CSS</div>
+                                            <div class="tag disabled-tag" data-color="rgba(255, 149, 0, 1)" onclick="enableTag(this)">#JavaScript</div>
+                                            <div class="tag disabled-tag" data-color="rgba(255, 0, 102, 1)" onclick="enableTag(this)">#React</div>
+                                            <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#GoLang</div>
+                                            <div class="tag disabled-tag" data-color="rgba(255, 246, 0, 1)" onclick="enableTag(this)">#Java</div>
+                                            <div class="tag disabled-tag" data-color="rgba(0, 255, 9, 1)" onclick="enableTag(this)">#C/C#</div>
+                                            <div class="tag disabled-tag" data-color="rgba(255, 0, 0, 1)" onclick="enableTag(this)">#C++</div>
+                                            <div class="tag disabled-tag" data-color="rgba(149, 255, 0, 1)" onclick="enableTag(this)">#Web</div>
+                                            <div class="tag disabled-tag" data-color="rgba(255, 0, 200, 1)" onclick="enableTag(this)">#UX/UI</div>
+                                        </div>
+                                    </div>
 
-                        <div class="profile-name">
-                            <div class="title">Имя работника</div>
-                            <div class="executor">Пьянков Максим</div>
-                        </div>
-                        
-                        <div class="sep-line"></div>
+                                    <div class="spec-block">
+                                        <h3>Специальность</h3>
+                                        <div class="checkboxes">
+                                            <input type="checkbox" class="filter-checkbox" id="front1"value="yes">
+                                            <label for="front1">FrontEnd</label>
+                                            <input type="checkbox" class="filter-checkbox" id="back1"value="yes">
+                                            <label for="back1">BackEnd</label>
+                                            <input type="checkbox" class="filter-checkbox" id="des1"value="yes">
+                                            <label for="des1">Design</label>
+                                            <input type="checkbox" class="filter-checkbox" id="sys1"value="yes">
+                                            <label for="sys1">SysAdm</label>
+                                            <input type="checkbox" class="filter-checkbox" id="game1"value="yes">
+                                            <label for="game1">GameDev</label>
+                                            <input type="checkbox" class="filter-checkbox" id="emb1" value="yes">
+                                            <label for="emb1">Embeded</label>
+                                            <input type="checkbox" class="filter-checkbox" id="pm1" value="yes">
+                                            <label for="pm1">PM</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="profile-name" style="margin-top: 35px;">
-                            <div class="title">Информация о работнике</div>
-                            <div class="description">
-                                Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более
-                                или менее стандартное заполнение шаблона.
+                                <div class="input-field">
+                                    <div class="input-title">Напишите о себе</div>
+                                    <textarea type="text" placeholder="Напишите пару строк" class="resume-input"></textarea>
+                                </div>
                             </div>
+                            <div class="create-cv">Создать</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="../static/main.js"></script>
 </body>
 </html>

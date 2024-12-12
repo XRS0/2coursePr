@@ -1,0 +1,131 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("../../assets/fonts/Montserrat-Light.ttf");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../../assets/fonts/Montserrat-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../../assets/fonts/Montserrat-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../../assets/fonts/Montserrat-SemiBold.ttf");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Unbounded";
+    src: url("../../assets/fonts/Unbounded-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap; 
+}
+
+@font-face {
+    font-family: "Unbounded";
+    src: url("../../assets/fonts/Unbounded-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap; 
+}
+
+@font-face {
+    font-family: "Unbounded";
+    src: url("../../assets/fonts/Unbounded-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap; 
+}
+
+@font-face {
+    font-family: "Comfortaa";
+    src: url("../../assets/fonts/Comfortaa-Light.ttf");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap; 
+}
+
+@font-face {
+    font-family: "Comfortaa";
+    src: url("../../assets/fonts/Comfortaa-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap; 
+}
+
+@font-face {
+    font-family: "Comfortaa";
+    src: url("../../assets/fonts/Comfortaa-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap; 
+}
+
+@font-face {
+    font-family: "Comfortaa";
+    src: url("../../assets/fonts/Comfortaa-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap; 
+}
+
+:root {
+    --background-black: #0C0C0C;
+    --main-purple: #6443B2;
+    --gray: #505050;
+    --purple-white: #E9E2FB;
+    --white: #FFFFFF;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow: hidden;
+}
+
+body {
+    background-color: var(--background-black);
+    color: var(--white);
+    background-size: cover;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#root {
+    width: 100%;
+}
+
+input {
+    border: none;
+    box-shadow: none;
+    font-family: inherit;
+}
+
+input:focus {
+    outline: none;
+}
+
+* {
+    box-sizing: border-box;
+}

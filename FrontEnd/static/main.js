@@ -32,7 +32,6 @@ document.addEventListener('keydown', e => {
 	}
 });
 
-
 function enableTag(tag) {
 	tag.classList.toggle("disabled-tag");
 	if (!tag.style.color) {
@@ -40,3 +39,41 @@ function enableTag(tag) {
 		tag.style.backgroundColor = tag.dataset.color.slice(0, length - 3) + "0.1)";
 	}
 }
+
+function openResume(div = null) {
+	document.querySelector(".cv-popup-block").classList.toggle("open");
+	document.querySelector(".cv-popup").classList.toggle("open");
+
+	if (div) showCreatedResume(parent);
+}
+
+function showCreatedResume(parentDiv) {
+	const resumeInputsArray = Array.from(document.querySelectorAll(".resume-input"));
+	let [previewTitle, previewAboutMe] = Array.from(document.querySelectorAll(".preview-resume-data").textContent);
+	console.log(title);
+	title.value = "bobo";
+}
+
+//4tags
+// class DropdownMenu {
+// 	constructor(element) {
+// 		this.element = element;
+// 		this.element.onclick = this.toggle.bind(this);
+
+// 		this.tags = [
+// 			{
+// 				className: "",
+// 				label: "#HTML/CSS",
+// 				isSelected: false
+// 			}
+// 		]
+// 	}
+
+// 	toggle() {
+// 		this.element.classList.toggle("open");
+// 	}
+// }
+
+// const menu = new DropdownMenu(
+// 	document.getElementById("chinazes-menu")
+// );
