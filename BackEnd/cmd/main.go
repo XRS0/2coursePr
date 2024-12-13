@@ -9,6 +9,7 @@ import (
 	"second/internal/webServer/handlers"
 
 	"github.com/gin-gonic/gin"
+	"github.com/lib/pq"
 )
 
 func main() {
@@ -36,7 +37,7 @@ func main() {
 		UserID:  "123e4567-e89b-12d3-a456-426614174000",
 		Title:   "Golang Developer",
 		Spec:    "Backend Development",
-		Tags:    []string{"Golang", "Microservices", "REST"}, // Передаем массив строк
+		Tags:    pq.StringArray{"Golang", "Microservices", "REST"}, // Передаем массив строк
 		AboutMe: "Experienced Go developer.",
 	}
 

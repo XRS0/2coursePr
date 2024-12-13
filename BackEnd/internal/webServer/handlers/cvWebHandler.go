@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"fmt"
+	"net/http"
 	"second/internal/handlers/resumeHandler"
 	"second/internal/models"
 
@@ -9,17 +11,30 @@ import (
 
 func (h *Handler) CreateCVHandler(c *gin.Context) {
 	var cv models.CV
-	if err := c.ShouldBindJSON(&cv); err != nil {
-		c.JSON(400, gin.H{"error": err.Error()})
+
+	// Попытка распарсить JSON
+	if err := c.BindJSON(&cv); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON"})
 		return
 	}
 
-	if err := resumeHandler.CreateCV(&cv, h.DB); err != nil {
-		c.JSON(500, gin.H{"error": err.Error()})
+	// Логирование полученных данных
+	fmt.Printf("Полученные данные: %+v\n", cv)
+
+	// Проверка, что CVID не пустой
+	if cv.CVID == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "CVID не может быть пустым"})
 		return
 	}
 
-	c.JSON(201, gin.H{"message": "Резюме создано", "data": cv})
+	// Сохранение в базе
+	result := h.DB.Create(&cv)
+	if result.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, cv)
 }
 
 func (h *Handler) GetAllCVsHandler(c *gin.Context) {
