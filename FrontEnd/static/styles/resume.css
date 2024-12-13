@@ -13,7 +13,7 @@
     transition: opacity 0.15s;
     pointer-events: none;
     opacity: 0;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .cv-popup {
@@ -29,9 +29,7 @@
     border: 2px solid #505050;
     overflow: hidden;
 
-    opacity: 0;
-    z-index: -1;
-    pointer-events: none;
+    z-index: 4;
     transform: translateY(-40px);
     transition: transform 0.25s ease;
 }
@@ -166,5 +164,15 @@
 }
 
 .cv-popup .create-cv {
+    font-weight: 500;
     margin: 0;
+}
+
+.cv-popup-block .bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    top: 0;
+    left: 0;
 }
