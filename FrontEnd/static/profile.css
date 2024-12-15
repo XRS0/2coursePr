@@ -8,4 +8,11 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.borders {
+  width: 75%;
+  height: 100%;
 }
