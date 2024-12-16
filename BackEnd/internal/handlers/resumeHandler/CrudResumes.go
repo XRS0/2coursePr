@@ -1,6 +1,7 @@
 package resumeHandler
 
 import (
+	"fmt"
 	"second/internal/models"
 
 	"gorm.io/gorm"
@@ -34,4 +35,32 @@ func UpdateCV(cvid string, updatedData map[string]interface{}, db *gorm.DB) erro
 func DeleteCV(cvid string, db *gorm.DB) error {
 	result := db.Where("cvid = ?", cvid).Delete(&models.CV{})
 	return result.Error
+}
+
+func GetMatchingCVs(db *gorm.DB, params models.FilterParams) ([]models.CV, error) {
+	var cvs []models.CV
+
+	query := db.Model(&models.CV{})
+
+	if params.Title != "" {
+		query = query.Where("title ILIKE ?", fmt.Sprintf("%%%s%%", params.Title))
+	}
+
+	if params.Spec != "" {
+		query = query.Where("spec = ?", params.Spec)
+	}
+
+	if len(params.Tags) > 0 {
+		query = query.Where("tags && ?", params.Tags) // Используем оператор && для массива PostgreSQL
+	}
+
+	if params.UserID != "" {
+		query = query.Where("user_id = ?", params.UserID)
+	}
+
+	if err := query.Find(&cvs).Error; err != nil {
+		return nil, err
+	}
+
+	return cvs, nil
 }
