@@ -17,7 +17,7 @@
 }
 
 .cv-popup {
-    height: 80.5vh;
+    height: 77.5vh;
     max-width: 620px;
     width: 100%;
     display: flex;
@@ -64,7 +64,7 @@
     font-weight: 400;
     font-size: 14px;
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     float: left;
     white-space: nowrap;
 }
@@ -96,11 +96,12 @@
 }
 
 .input-field input:hover {
-    border-color: #707070;
+    border-color: #3a3a3a;
 }
 
 .input-field input:focus {
     border-color: var(--main-purple);
+    background-color: transparent;
 }
 
 .input-field textarea {
@@ -108,7 +109,7 @@
     font-size: 13px;
     font-weight: 400;
     width: 100%;
-    height: 8rem;
+    height: 10rem;
     float: left;
     resize: none;
     outline: none;
@@ -120,11 +121,20 @@
     border: 1.5px solid #505050;
 }
 
+.input-field textarea:hover {
+    border-color: #3a3a3a;
+}
+
+.input-field textarea:focus {
+    border-color: var(--main-purple);
+    background-color: transparent;
+}
+
 .checkboxes-tags-block {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .popup-content .tags-block {
@@ -165,6 +175,7 @@
 
 .cv-popup .create-cv {
     font-weight: 500;
+    font-size: 14px;
     margin: 0;
 }
 

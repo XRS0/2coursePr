@@ -13,14 +13,14 @@
     <div id="root">
         <div class="main-container">
             <h1>Выберите одно из интересующих вас<br> <span style="color: var(--main-purple);">резюме</span> или создайте своё</h1>
-            
+
             <div class="navigation-bar">
                 <img src="../assets/images/loop.svg" alt="loop" class="input-icon">
                 <input type="text" placeholder="Найти резюме" class="filter-input">
-                <div class="create-cv" onclick="openResume()">Создать резюме</div>
-                <img src="../assets/images/Profile-button-icon.svg" alt="profile button">
+                <div class="create-cv" onclick="openResume('', './main.html')">Создать резюме</div>
+                <img src="../assets/images/Profile-button-icon.svg" alt="profile button" class="profile-icon" onclick="openWindow('./profile.html', './profile.html')">
             </div>
-    
+
             <div class="content-block">
                 <div class="filters-block">
                     <div class="tags-block">
@@ -66,7 +66,8 @@
                         <label for="sys">SysAdm</label>
                         <input type="checkbox" class="filter-checkbox" id="game"value="yes">
                         <label for="game">GameDev</label>
-                        <input type="checkbox" class="filter-checkbox" id="trd"value="yes">
+                        <input type="checkbox" class="filter-checkbox" id="micro" value="yes">
+                        <label for="micro">Embeded</label>
                     </div>
                 </div>
     
@@ -108,7 +109,7 @@
                     </div>
     
                     <div class="cv-scroll-block">
-                        <div class="cv-container" onclick="openResume(this)">
+                        <!-- <div class="cv-container" onclick="openResume(this)">
                             <div class="main-part">
                                 <img src="../assets/images/user-avatar.svg" alt="user">
                                 <div class="info">
@@ -136,10 +137,10 @@
                                 <div class="title">Информация о работнике</div>
                                 <div class="description preview-resume-data">Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона.</div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
-                    <div class="cv-popup-block" >
+                    <div class="cv-popup-block">
                         <div class="bg" onclick="openResume()"></div>
                         <div class="cv-popup">
                             <div class="title">
@@ -152,11 +153,7 @@
                                     <div class="input-title">Заголовок резюме</div>
                                     <input type="text" placeholder="Название резюме" class="resume-data">
                                 </div>
-    
-                                <div class="input-field">
-                                    <div class="input-title">Контактные данные</div>
-                                    <input type="text" placeholder="Почта или номер" class="resume-data">
-                                </div>
+
                                 <div class="checkboxes-tags-block">
                                     <div class="tags-block resume-data">
                                         <h2>Поиск по тегам</h2>
@@ -175,21 +172,41 @@
 
                                     <div class="spec-block resume-data">
                                         <h3>Специальность</h3>
-                                        <div class="checkboxes">
-                                            <input type="checkbox" class="filter-checkbox" id="front1"value="yes">
-                                            <label for="front1">FrontEnd</label>
-                                            <input type="checkbox" class="filter-checkbox" id="back1"value="yes">
-                                            <label for="back1">BackEnd</label>
-                                            <input type="checkbox" class="filter-checkbox" id="des1"value="yes">
-                                            <label for="des1">Design</label>
-                                            <input type="checkbox" class="filter-checkbox" id="sys1"value="yes">
-                                            <label for="sys1">SysAdm</label>
-                                            <input type="checkbox" class="filter-checkbox" id="game1"value="yes">
-                                            <label for="game1">GameDev</label>
-                                            <input type="checkbox" class="filter-checkbox" id="emb1" value="yes">
-                                            <label for="emb1">Embeded</label>
-                                            <input type="checkbox" class="filter-checkbox" id="pm1" value="yes">
-                                            <label for="pm1">PM</label>
+                                        <div class="resume-radio-grid">
+                                            <div class="radio">
+                                                <input type="radio" class="custom-radio" id="front1">
+                                                <label for="front1">FrontEnd</label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <input type="radio" class="custom-radio" id="back1">
+                                                <label for="back1">BackEnd</label>
+                                            </div>
+                                            
+                                            <div class="radio">
+                                                <input type="radio" class="custom-radio" id="des1">
+                                                <label for="des1">Design</label>
+                                            </div>
+                                            
+                                            <div class="radio">
+                                                <input type="radio" class="custom-radio" id="sys1">
+                                                <label for="sys1">SysAdm</label>
+                                            </div>
+                                            
+                                            <div class="radio">
+                                                <input type="radio" class="custom-radio" id="game1">
+                                                <label for="game1">GameDev</label>
+                                            </div>
+                                            
+                                            <div class="radio">
+                                                <input type="radio" class="custom-radio" id="emb1">
+                                                <label for="emb1">Embeded</label>
+                                            </div>
+                                            
+                                            <div class="radio">
+                                                <input type="radio" class="custom-radio" id="pm1">
+                                                <label for="pm1">PM</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +224,9 @@
         </div>
     </div>
 
+    <script src="../static/testdata.js"></script>
     <script src="../static/main.js"></script>
+    <script src="../static/handlers.js"></script>
     <script src="../static/fetches.js"></script>
 </body>
 </html>

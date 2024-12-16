@@ -28,14 +28,14 @@
                         <div class="user-hint">Вводи данные корректно</div>
                     </div>
 
-                    <div class="sign-in-button" onclick="window.open('../templates/main.html'), '_self'">
+                    <div class="sign-in-button" onclick="trySign()">
                         Войти
                     </div>
 
                     <div class="socials">
-                        <img src="../assets/images/Home-icon.svg" alt="icon" onclick="window.open(`https:/\/\portal.students.it-college.ru:8080`)">
-                        <img src="../assets/images/Git-icon.svg" alt="icon" onclick="window.open(`https:/\/\git.students.it-college.ru:8080`)">
-                        <img src="../assets/images/Wiki-icon.svg" alt="icon" onclick="window.open(`https:/\/\wiki.students.it-college.ru:8080`)">
+                        <img src="../assets/images/Home-icon.svg" alt="icon" onclick="window.open(`http:/\/\portal.students.it-college.ru`)">
+                        <img src="../assets/images/Git-icon.svg" alt="icon" onclick="window.open(`http:/\/\git.students.it-college.ru:8080`)">
+                        <img src="../assets/images/Wiki-icon.svg" alt="icon" onclick="window.open(`http:/\/\wiki.students.it-college.ru`)">
                     </div>
 
                     <div class="user-hint" style="font-family: 'Comfortaa', sans-serif;text-align: center;">Ресурсы колледжа</div>
@@ -86,5 +86,10 @@
             </div> 
         </div>
     </div>
+
+    <script src="../static/main.js"></script>
+    <script>
+        let nextPage = location.search.substring(1);
+    </script>
 </body>
 </html>

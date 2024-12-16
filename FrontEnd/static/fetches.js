@@ -71,30 +71,10 @@ async function updateUser(uuid, updatedData) {
     }
 }
 
-// Пример использования:
-updateUser('123e4567-e89b-12d3-a456-426614174000', {
-    login: 'updatedUser',
-    course: 'Advanced Programming'
-});
-
-async function deleteUser(uuid) {
-    try {
-        const response = await fetch(`http://localhost:8080/api/users/${uuid}`, {
-            method: 'DELETE'
-        });
-        
-        if (!response.ok) {
-            throw new Error('Ошибка удаления пользователя');
-        }
-        
-        console.log('Пользователь удален');
-    } catch (error) {
-        console.error('Ошибка:', error);
-    }
-}
-
-// Пример использования:
-deleteUser('123e4567-e89b-12d3-a456-426614174000');
+// updateUser('123e4567-e89b-12d3-a456-426614174000', {
+//     login: 'updatedUser',
+//     course: 'Advanced Programming'
+// });
 
 async function createCV(cvData) {
     try {
@@ -144,6 +124,5 @@ async function getAllCVs() {
     }
 }
 
-// Пример использования:
-getAllCVs();
+// getAllCVs();
 

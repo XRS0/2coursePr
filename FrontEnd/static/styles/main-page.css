@@ -1,24 +1,3 @@
-.main-container {
-    max-width: 1320px;
-    width: 100%;
-    min-height: 100vh;
-    margin: 0 auto;
-    padding-inline: 155px;
-    background-color: var(--background-black);
-    border-left: 1px solid #202020;
-    border-right: 1px solid #202020;
-    font-family: "Montserrat";
-}
-
-h1 {
-    font-family: "Unbounded", sans-serif;
-    font-size: 30px;
-    font-weight: 400;
-    text-align: center;
-    margin: 0 0 55px;
-    padding-top: 50px;
-}
-
 .navigation-bar {
     width: 100%;
     max-width: 1010px;
@@ -45,9 +24,27 @@ h1 {
     font-weight: 400px;
 }
 
+.filter-input:hover::placeholder {
+    color: #383838;
+}
+
+.filter-input:focus {
+    box-shadow: inset 0 0 5px 3px rgba(0, 0, 0, 0.25);
+}
+
 .input-icon {
     position: absolute;
     left: 12px;
+}
+
+.profile-icon {
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.profile-icon:hover {
+    box-shadow: 0px 2px 7px black;
 }
 
 .create-cv {
@@ -64,6 +61,10 @@ h1 {
     border-radius: 8px;
     background-color: var(--main-purple);
     cursor: pointer;
+}
+
+.create-cv:hover {
+    background-color: #5a3ca0;
 }
 
 .content-block {
@@ -118,6 +119,11 @@ h1 {
     background-color: #151515 !important;
 }
 
+.disabled-tag:hover {
+    color: #525151 !important;
+    background-color: #1a1a1a !important;
+}
+
 .course-block {
     margin: 28px 0;
 }
@@ -167,7 +173,6 @@ h1 {
     background-color: var(--main-purple);
     background-image: url("../../assets/images/checked-icon.svg");
 }
-
 
 .cv-block {
     position: relative;
@@ -300,6 +305,7 @@ h1 {
 .cv-container .main-part {
     display: flex;
     align-items: center;
+    margin-bottom: 25px;
 }
 
 .main-part .info {
@@ -331,11 +337,10 @@ h1 {
 
 .small-tag {
     font-size: 10px;
-    width: 100%;
-    max-width: 50px;
+    width: max-content;
     max-height: min-content;
     margin-right: 8px;
-    padding: 3px 0;
+    padding: 3px 5px;
     border-radius: 3px;
     cursor: auto;
 }
@@ -355,7 +360,6 @@ h1 {
 .profile-name {
     font-size: 13.4px;
     font-weight: 400;
-    margin-top: 25px;
     display: flex;
 }
 
@@ -371,9 +375,8 @@ h1 {
 }
 
 .cv-container .sep-line {
-    position: absolute;
-    bottom: 87px;
-    width: 93%;
+    margin: 15px 0;
+    width: 100%;
     height: 1px;
     background-color: var(--gray);
 }

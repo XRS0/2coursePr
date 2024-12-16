@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/profile.css">
+    <link rel="stylesheet" href="../static/styles/main-page.css">
+    <!-- <link rel="stylesheet" href="../static/styles/resume.css"> -->
+</head>
+<body style="background-image: url('../assets/images/Main-page-bg.png'); background-position: center center;">
+    <div id="root">
+        <div class="main-container">
+            <div class="header-title">
+                <h1>Личный кабинет</h1>
+                <img src="../assets/images/Profile-icon.svg" alt="profile">
+            </div>
+            
+            <div class="profile-block">
+                <div class="avatar-container">
+                    <img src="../assets/images/user-avatar.svg" alt="photo" class="avatar">
+                    <div class="change-avatar-button">
+                        <img src="../assets/images/Change-icon.svg" alt="pencil">
+                        <div style="margin-left: 5px;">Изменить фото</div>
+                    </div>
+                </div>
+
+                <div class="user-info-container">
+                    <div class="name-input">
+                        ФИО <input type="text" placeholder="Пьянков Максим">
+                    </div>
+
+                    <div class="name-input">
+                        Контакты <input type="text" placeholder="Почта или номер">
+                    </div>
+
+                    <div class="course-radio">
+                        Курс обучения
+                        <div class="radio-grid">
+                            <div class="radio">
+                                <input class="custom-radio" type="radio" id="fst-c" name="color">
+                                <label for="fst-c">1 курс</label>
+                            </div>
+
+                            <div class="radio">
+                                <input class="custom-radio" type="radio" id="snd-c" name="color">
+                                <label for="snd-c">2 курс</label>
+                            </div>
+
+                            <div class="radio">
+                                <input class="custom-radio" type="radio" id="trd-c" name="color">
+                                <label for="trd-c">3 курс</label>
+                            </div>
+
+                            <div class="radio">
+                                <input class="custom-radio" type="radio" id="frth-c" name="color">
+                                <label for="frth-c">4 курс</label>
+                            </div>
+                        </div>                
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-cv-title"><h1>Ваши резюме</h1></div>
+
+            <div class="cv-scroll-block">
+                <div class="cv-container">
+                    <div class="edit-text">Редактировать</div>
+                    <div class="main-part">
+                        <img src="../assets/images/user-avatar.svg" alt="user">
+                        <div class="info">
+                            <div class="title preview-resume-data">
+                                <h2>Прекрасный Бэк под ключ</h2>
+                                <div class="small-tag tag" style="color: #FFF600; background-color: #222313;">#Java</div>
+                                <div class="small-tag tag" style="color: #ff0469; background-color: #231319;">#React</div>
+                            </div>
+                            
+                            <div class="date">
+                                <span style="color: var(--main-purple);">2 курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
+                            </div>
+                            <div class="spec preview-resume-data">FrontEnd</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-name">
+                        <div class="title">Имя работника</div>
+                        <div class="executor">Пьянков Максим</div>
+                    </div>
+                    
+                    <div class="sep-line"></div>
+
+                    <div class="profile-name" style="margin-top: 35px;">
+                        <div class="title">Информация о работнике</div>
+                        <div class="description preview-resume-data">Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="save-profile" onclick="saveProfile()">Сохранить</div>
+        </div>
+    </div>
+
+    <script src="../static/handlers.js"></script>
+    <script src="../static/main.js"></script>
+</body>
+</html>
