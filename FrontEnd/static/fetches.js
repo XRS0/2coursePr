@@ -19,8 +19,8 @@ async function createUser(userData) {
     }
 }
 
-// Пример использования:
-createUser({
+// Пример использования: не стоит как будто
+/*createUser({
     login: 'newuser',
     password: 'securepassword',
     course: 'Programming',
@@ -28,7 +28,7 @@ createUser({
     isAdmin: false,
     contactData: 'jane@example.com',
     status: 'active'
-});
+}); */
 
 async function getAllUsers() {
     try {
@@ -48,7 +48,7 @@ async function getAllUsers() {
 }
 
 // Пример использования:
-getAllUsers();  // имба спасибо
+//getAllUsers();  // имба спасибо
 
 async function updateUser(uuid, updatedData) {
     try {
@@ -98,14 +98,14 @@ async function createCV(cvData) {
 }
 
 // Пример использования:
-createCV({
+/*createCV({
     cvid: '123e4567-e89b-12d3-a456-426614174001',
     userID: '123e4567-e89b-12d3-a456-426614174000',
     title: 'Golang Developer',
     spec: 'Backend Development',
     tags: ['Golang', 'Microservices', 'REST'], // Массив строк
     aboutMe: 'Experienced Go developer.'
-});
+});*/
 
 async function getAllCVs() {
     try {

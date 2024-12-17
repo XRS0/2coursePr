@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../static/styles/style.css">
     <link rel="stylesheet" href="../static/styles/profile.css">
     <link rel="stylesheet" href="../static/styles/main-page.css">
-    <!-- <link rel="stylesheet" href="../static/styles/resume.css"> -->
+    <link rel="stylesheet" href="../static/styles/resume.css">
 </head>
 <body style="background-image: url('../assets/images/Main-page-bg.png'); background-position: center center;">
     <div id="root">
@@ -66,7 +66,7 @@
             <div class="profile-cv-title"><h1>Ваши резюме</h1></div>
 
             <div class="cv-scroll-block">
-                <div class="cv-container">
+                <!-- <div class="cv-container">
                     <div class="edit-text">Редактировать</div>
                     <div class="main-part">
                         <img src="../assets/images/user-avatar.svg" alt="user">
@@ -95,14 +95,96 @@
                         <div class="title">Информация о работнике</div>
                         <div class="description preview-resume-data">Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона.</div>
                     </div>
+                </div> -->
+            </div>
+
+            <div class="cv-popup-block">
+                <div class="bg" onclick="openResume()"></div>
+                <div class="cv-popup">
+                    <div class="title">
+                        Редактирование
+                        <img src="../assets/images/resume-title-icon.svg">
+                    </div>
+                    
+                    <div class="popup-content">
+                        <div class="input-field">
+                            <div class="input-title">Заголовок резюме</div>
+                            <input type="text" placeholder="Название резюме" class="resume-data">
+                        </div>
+
+                        <div class="checkboxes-tags-block">
+                            <div class="tags-block resume-data">
+                                <h2>Поиск по тегам</h2>
+                                <div class="tags-grid ">
+                                    <div class="tag disabled-tag" data-color="rgba(0, 112, 255, 1)" onclick="enableTag(this)">#HTML/CSS</div>
+                                    <div class="tag disabled-tag" data-color="rgba(255, 149, 0, 1)" onclick="enableTag(this)">#JavaScript</div>
+                                    <div class="tag disabled-tag" data-color="rgba(255, 4, 105, 1)" onclick="enableTag(this)">#React</div>
+                                    <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#GoLang</div>
+                                    <div class="tag disabled-tag" data-color="rgba(255, 246, 0, 1)" onclick="enableTag(this)">#Java</div>
+                                    <div class="tag disabled-tag" data-color="rgba(0, 255, 9, 1)" onclick="enableTag(this)">#C/C#</div>
+                                    <div class="tag disabled-tag" data-color="rgba(255, 0, 0, 1)" onclick="enableTag(this)">#C++</div>
+                                    <div class="tag disabled-tag" data-color="rgba(149, 255, 0, 1)" onclick="enableTag(this)">#Web</div>
+                                    <div class="tag disabled-tag" data-color="rgba(255, 0, 200, 1)" onclick="enableTag(this)">#UX/UI</div>
+                                </div>
+                            </div>
+
+                            <div class="spec-block resume-data">
+                                <h3>Специальность</h3>
+                                <div class="resume-radio-grid">
+                                    <div class="radio">
+                                        <input type="radio" class="custom-radio" id="front1" name="change">
+                                        <label for="front1">FrontEnd</label>
+                                    </div>
+
+                                    <div class="radio">
+                                        <input type="radio" class="custom-radio" id="back1" name="change">
+                                        <label for="back1">BackEnd</label>
+                                    </div>
+                                    
+                                    <div class="radio">
+                                        <input type="radio" class="custom-radio" id="des1" name="change">
+                                        <label for="des1">Design</label>
+                                    </div>
+                                    
+                                    <div class="radio">
+                                        <input type="radio" class="custom-radio" id="sys1" name="change">
+                                        <label for="sys1">SysAdm</label>
+                                    </div>
+                                    
+                                    <div class="radio">
+                                        <input type="radio" class="custom-radio" id="game1" name="change">
+                                        <label for="game1">GameDev</label>
+                                    </div>
+                                    
+                                    <div class="radio">
+                                        <input type="radio" class="custom-radio" id="emb1" name="change">
+                                        <label for="emb1">Embeded</label>
+                                    </div>
+                                    
+                                    <div class="radio">
+                                        <input type="radio" class="custom-radio" id="pm1" name="change">
+                                        <label for="pm1">PM</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <div class="input-title">Напишите о себе</div>
+                            <textarea type="text" placeholder="Напишите пару строк" class="resume-data"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="create-cv">Сохранить изменения</div>
                 </div>
             </div>
 
             <div class="save-profile" onclick="saveProfile()">Сохранить</div>
         </div>
     </div>
+    <div class="cv-popup-block"></div>
 
-    <script src="../static/handlers.js"></script>
     <script src="../static/main.js"></script>
+    <script src="../static/handlers.js"></script>
 </body>
 </html>

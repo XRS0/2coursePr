@@ -1,37 +1,3 @@
-const dropDownBtn = document.querySelector(".dropdown-button");
-const dropDownList = document.querySelector('.dropdown-list');
-const dropDownListItems = Array.from(document.querySelectorAll('.dropdown-list-item'));
-const dropdownText = document.querySelector('.dropdown-text');
-
-const filterUp = document.querySelector("#filter-up");
-const filterDown = document.querySelector("#filter-down");
-
-dropDownBtn.addEventListener('click', e => {
-	dropDownList.classList.toggle('dropdown-list--visible');
-});
-
-dropDownListItems.forEach(listItem => {
-	listItem.addEventListener('click', function (e) {
-		e.stopPropagation();
-		dropdownText.innerText = this.innerText;
-		dropDownBtn.focus();
-		dropDownList.classList.remove('dropdown-list--visible');
-		if (listItem.id == "new") {
-			filterUp.style.filter =  "grayscale(0)"
-			filterDown.style.filter =  "grayscale(1)";
-		} else {
-			filterUp.style.filter =  "grayscale(1)";
-			filterDown.style.filter =  "grayscale(0)";
-		}
-	});
-});
-
-document.addEventListener('keydown', e => {
-	if (e.key === 'Tab' || e.key === 'Escape') {
-		dropDownList.classList.remove('dropdown-list--visible');
-	}
-});
-
 function enableTag(tag) {
 	tag.classList.toggle("disabled-tag");
 	if (!tag.style.color) {
@@ -71,21 +37,29 @@ function showCreatedResumeOld(parentDiv) {
 	const previewResumeTags = parentDiv.querySelectorAll(".small-tag");
     const resumeBlock = document.querySelector(".cv-popup");
     let button = resumeBlock.querySelector(".create-cv");
-
-    button.textContent = "Назад";
-    // button.removeAttribute("onclick");
-    // button.setAttribute("onclick", () => openResume());
-
-    resumeBlock.querySelector(".title").textContent = "Просмотр резюме";
 	
 	let [previewHeader, previewSpes, previewAboutMe] = previewResumeData;
 	let [title, tags, checkboxes, aboutMe] = document.querySelectorAll(".resume-data");
 	let [previewTitle, ...previewTags] = previewHeader.querySelectorAll("*");
 
-    title.style.color = "#505050";
-    checkboxes.style.color = "#505050";
-    aboutMe.style.color = "#505050";
-	
+    if (window.location.href.includes("profile")) {
+        button.textContent = "Сохранить";
+        resumeBlock.querySelector(".title").textContent = "Редактирование";
+        button.removeAttribute("onclick");
+        button.addEventListener("click", () => createNewResume(parentDiv));
+    } else {
+        button.textContent = "Назад";
+
+        resumeBlock.querySelector(".title").textContent = "Просмотр резюме";
+
+        title.style.color = "#505050";
+        checkboxes.style.color = "#505050";
+        aboutMe.style.color = "#505050";
+
+        const resumeContent = document.querySelector(".popup-content");
+	    resumeContent.style.pointerEvents = "none";
+    }
+
 	title.value = previewTitle.textContent;
 	aboutMe.value = previewAboutMe.textContent;
 
@@ -102,54 +76,86 @@ function showCreatedResumeOld(parentDiv) {
         }
 	});
 
-	const resumeContent = document.querySelector(".popup-content");
-	resumeContent.style.pointerEvents = "none";
+	// const resumeContent = document.querySelector(".popup-content");
+	// resumeContent.style.pointerEvents = "none";
 }
 
-// function showCreatedResume() {}
-
 function renderCVs() {
+    if (window.location.href.includes("profile")) return renderProfileCV();
+    
     let fullBlock = "";
     const cvBlock = document.querySelector(".cv-scroll-block");
 
     CVs.forEach(i => {
-        let stringTags = "";
-        i.Tags.forEach(tag => {stringTags +=`
-            <div class="small-tag tag" style="color: ${colors[tag]}; background-color: ${colors[tag].slice(0, length - 3) + "0.1)"};">${tag}</div>
-        `})
-        fullBlock += `
-        <div class="cv-container" onclick="openResume(this)">
-            <div class="main-part">
-                <img src="../assets/images/user-avatar.svg" alt="user">
-                <div class="info">
-                    <div class="title preview-resume-data">
-                        <h2>${i.Title}</h2>
-                        ${stringTags}
-                    </div>
-                    
-                    <div class="date">
-                        <span style="color: var(--main-purple);">${currentUser.Course} курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
-                    </div>
-                    <div class="spec preview-resume-data">${i.Spec}</div>
-                </div>
-            </div>
-    
-            <div class="profile-name">
-                <div class="title">Имя работника</div>
-                <div class="executor">${currentUser.LFM}</div>
-            </div>
-            
-            <div class="sep-line"></div>
-    
-            <div class="profile-name">
-                <div class="title">Информация о работнике</div>
-                <div class="description preview-resume-data">${i.AboutMe}</div>
-            </div>
-        </div>
-    `});
+        fullBlock += generateCVBlock(fullBlock, i);
+        });
 
     cvBlock.innerHTML = "";
     cvBlock.innerHTML = fullBlock;
+}
+
+function renderProfileCV() {
+    let fullBlock = "";
+    const cvBlock = document.querySelector(".cv-scroll-block");
+
+    currentUser.CVs.forEach(j => {
+        let i;
+        CVs.forEach(cv => {
+            if (cv.CVID == j) i = cv;
+        });
+        
+        fullBlock += generateCVBlock(fullBlock, i, "<div class='edit-text'>Редактировать</div>");
+    });
+
+    cvBlock.innerHTML = "";
+    cvBlock.innerHTML = fullBlock;
+}
+
+function rerenderOneCV(cv, data) {
+    const resumeContainer = Array.from(cv.parentElement.querySelectorAll(".cv-container"));
+    let fullBlock = "";
+    fullBlock = generateCVBlock(fullBlock, data, "<div class='edit-text'>Редактировать</div>")
+    
+    resumeContainer[resumeContainer.indexOf(cv)].innerHTML = fullBlock.slice(60, fullBlock.length - 10);
+}
+
+function generateCVBlock(container, i, editDiv = "") {
+    let stringTags = "";
+    i.Tags.forEach(tag => {stringTags += `
+        <div class="small-tag tag" style="color: ${colors[tag]}; background-color: ${colors[tag].slice(0, length - 3) + "0.1)"};">${tag}</div>
+    `})
+    container = `
+    <div class="cv-container" onclick="openResume(this)">
+        ${editDiv}
+        <div class="main-part">
+            <img src="../assets/images/user-avatar.svg" alt="user">
+            <div class="info">
+                <div class="title preview-resume-data">
+                    <h2>${i.Title}</h2>
+                    ${stringTags}
+                </div>
+                
+                <div class="date">
+                    <span style="color: var(--main-purple);">${currentUser.Course} курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
+                </div>
+                <div class="spec preview-resume-data">${i.Spec}</div>
+            </div>
+        </div>
+    
+        <div class="profile-name">
+            <div class="title">Имя работника</div>
+            <div class="executor">${currentUser.LFM}</div>
+        </div>
+        
+        <div class="sep-line"></div>
+    
+        <div class="profile-name">
+            <div class="title">Информация о работнике</div>
+            <div class="description preview-resume-data">${i.AboutMe}</div>
+        </div>
+    </div>`
+
+    return container;
 }
 
 function cleanResume(resumeDiv) {

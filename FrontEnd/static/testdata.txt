@@ -1,0 +1,26 @@
+//вызовите при загрузке страницы для теста фронтенда
+
+localStorage.setItem("TestUser", JSON.stringify({
+    UUID: 'lol',
+    Login: 'i23s0130',
+    Password: 'serg33500',
+    Course: '1',
+    LFM: 'Бобоев Сергей',
+    IsAdmin: false,
+    ContactData: '',
+    Status: '',
+    CVs: ['bobo'],
+
+    isRegistered: false      //служебное поле чтобы понять зарегался ли человек
+}))
+
+localStorage.setItem("CvArray", JSON.stringify([
+    {
+        CVID: 'bobo',
+        UserID: 'lol',
+        Title: "Frontend бобойка",
+        Spec: "Design",
+        Tags: ["#UX/UI", "#JavaScript"],
+        AboutMe: "Всем привет, я начинающий программист в ткинтере, пожалуйста не судите строго"
+    }
+]))
