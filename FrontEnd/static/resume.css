@@ -185,7 +185,7 @@ body {
   color: rgba(41, 95, 212, 1);
   border-radius: 10px;
   white-space: nowrap;
-  min-width: 50px;
+  min-width: 30px;
   padding: 10px;
   height: 10px;
   margin-left: 3%;
@@ -304,7 +304,7 @@ select.input-one {
   color: rgba(41, 95, 212, 1);
   border-radius: 10px;
   white-space: nowrap;
-  min-width: 8px;
+  min-width: 5px;
   padding: 10px;
   height: 5px;
   margin-left: 1%;

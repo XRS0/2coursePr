@@ -5,35 +5,13 @@ function hide() {
 
   if (input.type == "password") {
     input.type = "text";
-    inputImg.src = "/src/img/eye-on.svg";
+    inputImg.src = "Frontend/src/img/eye-on.svg";
     inputImg.style.width = "24px";
     inputImg.style.height = "24px";
   } else {
     input.type = "password";
-    inputImg.src = "/src/img/hide.svg";
+    inputImg.src = "Frontend/src/img/hide.svg";
   }
-}
-
-//Отправка логина, пароля
-var users = [];
-
-let inputUser = document.getElementById("userName");
-let inputPassword = document.getElementById("input");
-
-function sendData() {
-  const UserData = {
-    name: inputUser.value,
-    password: inputPassword.value,
-  };
-  users.push(UserData);
-
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Contetn-Type": "aplication/json",
-    },
-    body: JSON.stringify(UserData),
-  });
 }
 
 //Открыть Pop-up, закрыть
@@ -54,22 +32,27 @@ function createRes() {
   let descr = document.getElementById("popup-descr").value;
   let kurs = document.getElementById("popup-kurs").value;
   let status = document.getElementById("popup-status").value;
-  let tag = document.getElementsByClassName("pup-resume-tag").value;
+  let tag = document.querySelector(".pup-resume-tag").textContent;
 
   if (!title || !descr || !kurs || !status) {
     alert("Заполните все поля");
     return;
   }
 
-  //Отправил данные о созданном резюме
-  const resume = { title, descr, kurs, status, tag };
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "aplication/json",
-    },
-    body: JSON.stringify(resume),
-  });
+  const resumeData = {
+    title,
+    descr,
+    kurs,
+    status,
+    tags: selectedTags,
+  };
+
+  // Получение существующих резюме из localStorage
+  let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
+  // Добавление нового резюме в массив
+  resumes.push(resumeData);
+  // Сохранение массива в localStorage
+  localStorage.setItem("resumes", JSON.stringify(resumes));
 
   let newAnn = document.createElement("div");
   newAnn.classList.add("cont-resume-new");
@@ -78,10 +61,10 @@ function createRes() {
           <p class="resume-descr">
             ${descr}
           </p>
-          <p class="resume-descr">Курс: ${kurs}</p>
-            <p class="resume-descr">Статус: ${status}</p>
+          <p class="resume-descr">${kurs} Курс</p>
+            <p class="resume-descr">${status}</p>
           <div class="resume-tag">
-          <p>JS</p>
+          <p>${selectedTags.join(", ")}</p>
           </div>
           <a href="profile.html" class="resume-butt">Перейти в профиль</a>
         </div>
@@ -95,41 +78,112 @@ function createRes() {
   document.getElementById("popup-kurs").value = "";
   document.getElementById("popup-status").value = "";
   document.getElementById("popup").classList.remove("active");
+  selectedTags = [];
+  localStorage.setItem("selectedTags", JSON.stringify(selectedTags));
+
+  document
+    .querySelectorAll(".pup-resume-tag")
+    .forEach((tag) => tag.classList.remove("highlighted"));
 }
+
+function loadResumes() {
+  let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
+  let resumeContainer = document.getElementById("resume-container");
+  resumes.forEach((resume) => {
+    let newAnn = document.createElement("div");
+    newAnn.classList.add("cont-resume-new");
+
+    let tags = Array.isArray(resume.tags) ? resume.tags.join(", ") : "";
+
+    newAnn.innerHTML = `
+      <div>
+        <p class="resume-name">${resume.title}</p>
+        <p class="resume-descr">${resume.descr}</p>
+        <p class="resume-descr">${resume.kurs} Курс</p>
+        <p class="resume-descr">${resume.status}</p>
+        <div class="resume-tag">
+          <p>${tags}</p> 
+        </div>
+        <a href="profile.html" class="resume-butt">Перейти в профиль</a>
+      </div>`;
+    resumeContainer.appendChild(newAnn);
+  });
+}
+document.addEventListener("DOMContentLoaded", loadResumes);
+
+let selectedTags = JSON.parse(localStorage.getItem("selectedTags")) || [];
 
 function highlight(element) {
-  element.classList.add("highlighted");
+  const tagText = element.querySelector("p").textContent;
+
+  if (selectedTags.includes(tagText)) {
+    selectedTags = selectedTags.filter((tag) => tag !== tagText);
+    element.classList.remove("highlighted");
+  } else {
+    selectedTags.push(tagText);
+    element.classList.add("highlighted");
+  }
+
+  localStorage.setItem("selectedTags", JSON.stringify(selectedTags));
 }
 
-function highlight(element) {
-  element.classList.toggle("highlighted");
+function restoreSelectedTags() {
+  const tags = document.querySelectorAll(".pup-resume-tag");
+
+  tags.forEach((tag) => {
+    const tagText = tag.querySelector("p").textContent;
+    if (selectedTags.includes(tagText)) {
+      tag.classList.add("highlighted");
+    }
+  });
 }
 
-//Отправил данные о фильтрации
+document.addEventListener("DOMContentLoaded", restoreSelectedTags);
+
+// Функция для фильтрации резюме по введенному тексту
+function filterResumes() {
+  let searchTerm = document.querySelector(".search-input").value.toLowerCase(); // Получаем текст из поля поиска
+  let resumes = JSON.parse(localStorage.getItem("resumes")) || []; // Получаем все резюме
+  let resumeContainer = document.getElementById("resume-container");
+
+  // Очищаем контейнер перед добавлением отфильтрованных резюме
+  resumeContainer.innerHTML = "";
+
+  // Фильтруем резюме по названию
+  let filteredResumes = resumes.filter((resume) =>
+    resume.title.toLowerCase().includes(searchTerm)
+  );
+
+  // Добавляем отфильтрованные резюме на страницу
+  filteredResumes.forEach((resume) => {
+    let newAnn = document.createElement("div");
+    newAnn.classList.add("cont-resume-new");
+
+    let tags = Array.isArray(resume.tags) ? resume.tags.join(", ") : "";
+
+    newAnn.innerHTML = `
+      <div>
+        <p class="resume-name">${resume.title}</p>
+        <p class="resume-descr">${resume.descr}</p>
+        <p class="resume-descr">${resume.kurs} Курс</p>
+        <p class="resume-descr">${resume.status}</p>
+        <div class="resume-tag">
+          <p>${tags}</p> 
+        </div>
+        <a href="profile.html" class="resume-butt">Перейти в профиль</a>
+      </div>`;
+    resumeContainer.appendChild(newAnn);
+  });
+}
+
+// Добавляем обработчик события для поля поиска
 document
-  .getElementsByClassName("search-butt")
-  .addEventListener("click", function () {
-    let selectCourse = Array.from(
-      document.querySelectorAll('input[name="course"]:checked')
-    ).map((checkbox) => checkbox.value);
-    let selectSpeciality = Array.from(
-      document.querySelectorAll('input[name="spec"]:checked')
-    ).map((checkbox) => checkbox.value);
-    let selectStatus = Array.from(
-      document.querySelectorAll('input[name="status"]:checked')
-    ).map((checkbox) => checkbox.value);
+  .querySelector(".search-input")
+  .addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      filterResumes(); // Фильтруем резюме при нажатии "Enter"
+    }
   });
 
-const filterData = {
-  courses: selectCourse,
-  speciality: selectSpeciality,
-  status: selectStatus,
-};
-
-fetch(url, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application.json",
-  },
-  body: JSON.stringify(filterData),
-});
+// Также можно добавить кнопку для ручного фильтра
+document.querySelector(".search-butt").addEventListener("click", filterResumes);
