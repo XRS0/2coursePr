@@ -164,6 +164,7 @@ input:focus {
 
 .creators {
     margin: 45px 0;
+    user-select: none;
 }
 
 .creator-name {
@@ -226,6 +227,11 @@ input:focus {
     font-size: 12px;
     line-height: 1.125rem;
     font-weight: 500;
+}
+
+.disable-button {
+    pointer-events: none;
+    background-color: #201129 !important;
 }
 
 @keyframes creators {

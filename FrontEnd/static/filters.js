@@ -1,5 +1,7 @@
 const mainSearchInput = document.querySelector('.filter-input');
-const copiedCV = CVs;
+let copiedCV
+setTimeout(() => copiedCV = [...CVs], 400);
+
 mainSearchInput.addEventListener("input", () => setTimeout(getSearchedCV, 400));
 
 function getSearchedCV() {

@@ -9,16 +9,12 @@ function enableTag(tag) {
 function openResume(command, executor) {
     if (executor) {
         if (checkRegister()) {
-            console.log(executor);
-            
             window.location.href = `./auth.html?${executor}`;
             return;
         }
     }
 	const parentOverflow = document.querySelector(".cv-popup-block")
 	const resume = document.querySelector(".cv-popup");
-
-    if (command === "") resume.querySelector(".create-cv").setAttribute("onclick", createNewResume);
 
     parentOverflow.classList.toggle("open");
     resume.classList.toggle("open");
@@ -75,9 +71,6 @@ function showCreatedResumeOld(parentDiv) {
             label.style.color = "#FFF";
         }
 	});
-
-	// const resumeContent = document.querySelector(".popup-content");
-	// resumeContent.style.pointerEvents = "none";
 }
 
 function renderCVs() {
@@ -88,7 +81,7 @@ function renderCVs() {
 
     CVs.forEach(i => {
         fullBlock += generateCVBlock(fullBlock, i);
-        });
+    });
 
     cvBlock.innerHTML = "";
     cvBlock.innerHTML = fullBlock;
@@ -99,12 +92,12 @@ function renderProfileCV() {
     const cvBlock = document.querySelector(".cv-scroll-block");
 
     currentUser.CVs.forEach(j => {
-        let i;
-        CVs.forEach(cv => {
-            if (cv.CVID == j) i = cv;
-        });
+        // let i;
+        // CVs.forEach(cv => {
+        //     if (cv.CVID == j) i = cv;
+        // });
         
-        fullBlock += generateCVBlock(fullBlock, i, "<div class='edit-text'>Редактировать</div>");
+        fullBlock += generateCVBlock(fullBlock, j, "<div class='edit-text'>Редактировать</div>");
     });
 
     cvBlock.innerHTML = "";
@@ -120,10 +113,15 @@ function rerenderOneCV(cv, data) {
 }
 
 function generateCVBlock(container, i, editDiv = "") {
+    // let course, name;            //мои разработки на случай если макс не будет передавать их
+    // allUsers.forEach(user => {
+    //     if (user.UUID = )
+    // })
+
     let stringTags = "";
     i.Tags.forEach(tag => {stringTags += `
         <div class="small-tag tag" style="color: ${colors[tag]}; background-color: ${colors[tag].slice(0, length - 3) + "0.1)"};">${tag}</div>
-    `})
+    `})                                                                                                                                         // 136 ${currentUser.Course} 144 ${currentUser.LFM}
     container = `
     <div class="cv-container" onclick="openResume(this)">
         ${editDiv}
@@ -136,7 +134,7 @@ function generateCVBlock(container, i, editDiv = "") {
                 </div>
                 
                 <div class="date">
-                    <span style="color: var(--main-purple);">${currentUser.Course} курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
+                    <span style="color: var(--main-purple);">2 курс</span> <img src="../assets/images/point.svg" style="margin: 0 4px 2px;"> Создано 4 декабря
                 </div>
                 <div class="spec preview-resume-data">${i.Spec}</div>
             </div>
@@ -144,7 +142,7 @@ function generateCVBlock(container, i, editDiv = "") {
     
         <div class="profile-name">
             <div class="title">Имя работника</div>
-            <div class="executor">${currentUser.LFM}</div>
+            <div class="executor">Пьянков Максим</div>
         </div>
         
         <div class="sep-line"></div>
@@ -177,7 +175,7 @@ function cleanResume(resumeDiv) {
                         <div class="tag disabled-tag" data-color="rgba(0, 112, 255, 1)" onclick="enableTag(this)">#HTML/CSS</div>
                         <div class="tag disabled-tag" data-color="rgba(255, 149, 0, 1)" onclick="enableTag(this)">#JavaScript</div>
                         <div class="tag disabled-tag" data-color="rgba(255, 4, 105, 1)" onclick="enableTag(this)">#React</div>
-                        <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#GoLang</div>
+                        <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#Golang</div>
                         <div class="tag disabled-tag" data-color="rgba(255, 246, 0, 1)" onclick="enableTag(this)">#Java</div>
                         <div class="tag disabled-tag" data-color="rgba(0, 255, 9, 1)" onclick="enableTag(this)">#C/C#</div>
                         <div class="tag disabled-tag" data-color="rgba(255, 0, 0, 1)" onclick="enableTag(this)">#C++</div>
@@ -230,4 +228,28 @@ function cleanResume(resumeDiv) {
 	`
 };
 
-renderCVs();
+let filter = {
+    spec: [],
+    tags: []
+}
+
+function getFilteredOptions(div) {
+    if (div.classList.contains("tag")) {
+        enableTag(div);
+        if (!div.classList.contains("disabled-tag")){
+            filter.tags.push(div.textContent);
+        } else {
+            let index = filter.tags.indexOf(div.textContent);
+            filter.tags.splice(index, 1);
+        }
+    } else {
+        if (!document.getElementById(div.attributes[0].nodeValue).checked) {
+            filter.spec.push(div.textContent);
+        } else {
+            let index = filter.spec.indexOf(div.textContent);
+            filter.spec.splice(index, 1);
+        }
+    }
+    console.log(filter);
+    filterCV(filter);
+}

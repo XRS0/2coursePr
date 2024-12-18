@@ -26,15 +26,15 @@
                     <div class="tags-block">
                         <h2>Поиск по тегам</h2>
                         <div class="tags-grid">
-                            <div class="tag disabled-tag" data-color="rgba(0, 112, 255, 1)" onclick="enableTag(this)">#HTML/CSS</div>
-                            <div class="tag disabled-tag" data-color="rgba(255, 149, 0, 1)" onclick="enableTag(this)">#JavaScript</div>
-                            <div class="tag disabled-tag" data-color="rgba(255, 4, 105, 1)" onclick="enableTag(this)">#React</div>
-                            <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#GoLang</div>
-                            <div class="tag disabled-tag" data-color="rgba(255, 246, 0, 1)" onclick="enableTag(this)">#Java</div>
-                            <div class="tag disabled-tag" data-color="rgba(0, 255, 9, 1)" onclick="enableTag(this)">#C/C#</div>
-                            <div class="tag disabled-tag" data-color="rgba(255, 0, 0, 1)" onclick="enableTag(this)">#C++</div>
-                            <div class="tag disabled-tag" data-color="rgba(149, 255, 0, 1)" onclick="enableTag(this)">#Web</div>
-                            <div class="tag disabled-tag" data-color="rgba(255, 0, 200, 1)" onclick="enableTag(this)">#UX/UI</div>
+                            <div class="tag disabled-tag" data-color="rgba(0, 112, 255, 1)" onclick="getFilteredOptions(this)">#HTML/CSS</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 149, 0, 1)" onclick="getFilteredOptions(this)">#JavaScript</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 4, 105, 1)" onclick="getFilteredOptions(this)">#React</div>
+                            <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="getFilteredOptions(this)">#Golang</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 246, 0, 1)" onclick="getFilteredOptions(this)">#Java</div>
+                            <div class="tag disabled-tag" data-color="rgba(0, 255, 9, 1)" onclick="getFilteredOptions(this)">#C/C#</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 0, 0, 1)" onclick="getFilteredOptions(this)">#C++</div>
+                            <div class="tag disabled-tag" data-color="rgba(149, 255, 0, 1)" onclick="getFilteredOptions(this)">#Web</div>
+                            <div class="tag disabled-tag" data-color="rgba(255, 0, 200, 1)" onclick="getFilteredOptions(this)">#UX/UI</div>
                         </div>
                     </div>
     
@@ -55,19 +55,19 @@
                         <h3>Специальность</h3>
     
                         <input type="checkbox" class="filter-checkbox" id="front"value="yes">
-                        <label for="front">FrontEnd</label>
+                        <label for="front" onclick="getFilteredOptions(this)">FrontEnd</label>
                         <input type="checkbox" class="filter-checkbox" id="back"value="yes">
-                        <label for="back">BackEnd</label>
+                        <label for="back" onclick="getFilteredOptions(this)">BackEnd</label>
                         <input type="checkbox" class="filter-checkbox" id="des"value="yes">
-                        <label for="des">Design</label>
+                        <label for="des" onclick="getFilteredOptions(this)">Design</label>
                         <input type="checkbox" class="filter-checkbox" id="pm"value="yes">
-                        <label for="pm">PM</label>
+                        <label for="pm" onclick="getFilteredOptions(this)">PM</label>
                         <input type="checkbox" class="filter-checkbox" id="sys"value="yes">
-                        <label for="sys">SysAdm</label>
+                        <label for="sys" onclick="getFilteredOptions(this)">SysAdm</label>
                         <input type="checkbox" class="filter-checkbox" id="game"value="yes">
-                        <label for="game">GameDev</label>
+                        <label for="game" onclick="getFilteredOptions(this)">GameDev</label>
                         <input type="checkbox" class="filter-checkbox" id="micro" value="yes">
-                        <label for="micro">Embeded</label>
+                        <label for="micro" onclick="getFilteredOptions(this)">Embeded</label>
                     </div>
                 </div>
     
@@ -161,7 +161,7 @@
                                             <div class="tag disabled-tag" data-color="rgba(0, 112, 255, 1)" onclick="enableTag(this)">#HTML/CSS</div>
                                             <div class="tag disabled-tag" data-color="rgba(255, 149, 0, 1)" onclick="enableTag(this)">#JavaScript</div>
                                             <div class="tag disabled-tag" data-color="rgba(255, 4, 105, 1)" onclick="enableTag(this)">#React</div>
-                                            <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#GoLang</div>
+                                            <div class="tag disabled-tag" data-color="rgba(0, 255, 242, 1)" onclick="enableTag(this)">#Golang</div>
                                             <div class="tag disabled-tag" data-color="rgba(255, 246, 0, 1)" onclick="enableTag(this)">#Java</div>
                                             <div class="tag disabled-tag" data-color="rgba(0, 255, 9, 1)" onclick="enableTag(this)">#C/C#</div>
                                             <div class="tag disabled-tag" data-color="rgba(255, 0, 0, 1)" onclick="enableTag(this)">#C++</div>
@@ -227,7 +227,7 @@
     <script src="../static/main.js"></script>
     <script src="../static/handlers.js"></script>
     <script src="../static/filters.js"></script>
+    <script src="../static/fetches.js"></script>
     <script src="../static/dropdown.js"></script>
-    <!-- <script src="../static/fetches.js"></script> -->
 </body>
 </html>

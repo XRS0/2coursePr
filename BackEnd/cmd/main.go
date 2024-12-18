@@ -8,6 +8,7 @@ import (
 	"second/internal/models"
 	"second/internal/webServer/handlers"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 )
@@ -77,8 +78,15 @@ func main() {
 		DB: DB,
 	}
 
-	// Инициализация Gin
 	r := gin.Default()
+
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"*"},
+		AllowHeaders:     []string{"*"},
+		ExposeHeaders:    []string{"*"},
+		AllowCredentials: true,
+	}))
 
 	// Роуты для пользователей
 	r.POST("/users", handler.CreateUserHandler)
@@ -89,12 +97,11 @@ func main() {
 
 	// Роуты для резюме
 	r.POST("/cvs", handler.CreateCVHandler)
-	r.GET("/cvs", handler.FilterCVsHandler)
+	r.GET("/cvs", handler.GetAllCVsHandler)
 	r.GET("/cvs/:cvid", handler.GetCVByIDHandler)
 	r.PATCH("/cvs/:cvid", handler.UpdateCVHandler)
 	r.DELETE("/cvs/:cvid", handler.DeleteCVHandler)
 
 	// Запуск сервера
 	r.Run(":8080")
-
 }
