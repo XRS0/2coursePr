@@ -29,22 +29,23 @@ let inputUser = document.getElementById("userName");
 let inputPassword = document.getElementById("input");
 let loginButton = document.getElementById("login-butt");
 
-function sendData() {
-  const UserData = {
-    login: inputUser.value,
-    password: inputPassword.value,
-    course: "1",
-    lfm: "Соколов Михаил",
-    isAdmin: false,
-    contactData: "sokolik@gmial.com",
-    status: "free",
-  };
+// function sendData() {
+//   const UserData = {
+//     UUID: inputUser.value,
+//     password: inputPassword.value,
+//     course: "1",
+//     lfm: "Соколов Михаил",
+//     isAdmin: false,
+//     contactData: "sokolik@gmial.com",
+//     status: "free",
+//   };
 
-  users.push(UserData);
-  localStorage.setItem("users", JSON.stringify(users));
-  createUser(UserData);
-}
+//   localStorage.setItem("currentUserUUID", UserData.UUID);
 
+//   let users = JSON.parse(localStorage.getItem("users")) || [];
+//   users.push(UserData);
+//   localStorage.setItem("currentUserUUID", JSON.stringify(users));
+// }
 // loginButton.addEventListener("click", (event) => {
 //   event.preventDefault();
 //   sendData();
@@ -97,6 +98,8 @@ async function getAllUsers() {
       );
     }
     const result = await response.json();
+    const userUUIDs = result.map((user) => user.UUID); // Массив с только UUID пользователей
+    localStorage.setItem("userUUIDs", JSON.stringify(userUUIDs));
     console.log("Пользователь получен:", result);
     return result;
   } catch (error) {
@@ -138,12 +141,12 @@ async function sendCV(resumeData) {
     const response = await fetch("http://192.168.71.111:8080/cvs", {
       method: "POST",
       headers: {
-        "Contetnt-Type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(resumeData),
     });
     const result = await response.json();
-    console.log("Пользователь отправлен:", result);
+    console.log("Резюме отправлено:", result);
     return result;
   } catch (error) {
     console.error("Ошибка:", error);

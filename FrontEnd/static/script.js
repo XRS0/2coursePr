@@ -33,8 +33,9 @@ function createRes() {
   let course = document.getElementById("popup-kurs").value;
   let status = document.getElementById("popup-status").value;
   let tag = document.querySelector(".pup-resume-tag").textContent;
-  let cvid = "3124dksfj";
-  let inputUser = document.getElementById("userName");
+  let cvid = "";
+  let userid = localStorage.getItem("userUUIDs");
+  console.log("Айди пользователя", userid);
 
   if (!title || !descr || !course || !status) {
     alert("Заполните все поля");
@@ -42,17 +43,15 @@ function createRes() {
   }
 
   const resumeData = {
+    userid: userid,
     cvid,
     title,
     descr,
-    course,
     status,
     tags: selectedTags,
   };
 
-  // Получение существующих резюме из localStorage
   let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
-  // Добавление нового резюме в массив
   resumes.push(resumeData);
   // Сохранение массива в localStorage
   localStorage.setItem("resumes", JSON.stringify(resumes));
