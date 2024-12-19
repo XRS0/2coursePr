@@ -198,7 +198,7 @@ function filterCV(option) {
     console.log(queryString);
     
       // Выполняем fetch-запрос
-    fetch(`http://localhost:8080/cvs?${queryString}`, {
+    fetch(`http://localhost:8080/cvs/${queryString}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"

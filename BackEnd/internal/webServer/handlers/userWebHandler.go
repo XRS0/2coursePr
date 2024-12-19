@@ -19,7 +19,7 @@ func (h *Handler) CreateUserHandler(c *gin.Context) {
 		return
 	}
 
-	c.JSON(201, gin.H{"message": "Пользователь создан", "data": user})
+	c.JSON(500, gin.H{"message": "Пользователь создан", "data": user})
 }
 
 func (h *Handler) GetAllUsersHandler(c *gin.Context) {

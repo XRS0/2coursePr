@@ -20,7 +20,7 @@ func main() {
 		UUID:        "123e4567-e89b-12d3-a456-426614174000",
 		Login:       "user1",
 		Password:    "password",
-		Course:      "Programming",
+		Course:      5,
 		LFM:         "John Doe",
 		IsAdmin:     false,
 		ContactData: "email@example.com",
@@ -97,7 +97,7 @@ func main() {
 
 	// Роуты для резюме
 	r.POST("/cvs", handler.CreateCVHandler)
-	r.GET("/cvs", handler.GetAllCVsHandler)
+	r.GET("/cvs", handler.FilterCVsHandler)
 	r.GET("/cvs/:cvid", handler.GetCVByIDHandler)
 	r.PATCH("/cvs/:cvid", handler.UpdateCVHandler)
 	r.DELETE("/cvs/:cvid", handler.DeleteCVHandler)
