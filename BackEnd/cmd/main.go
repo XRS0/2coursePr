@@ -10,6 +10,7 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"github.com/lib/pq"
 )
 
@@ -17,8 +18,7 @@ func main() {
 	DB := db.InitDB()
 	// Пример: Создание пользователя
 	user := models.User{
-		UUID:        "123e4567-e89b-12d3-a456-426614174000",
-		Login:       "user1",
+		UUID:        "i23s0119",
 		Password:    "password",
 		Course:      5,
 		LFM:         "John Doe",
@@ -34,8 +34,7 @@ func main() {
 
 	// Пример: Создание резюме для пользователя
 	cv := &models.CV{
-		CVID:    "456e1237-e89b-12d3-a456-426614174000",
-		UserID:  "123e4567-e89b-12d3-a456-426614174000",
+		UserID:  uuid.New().String(),
 		Title:   "Golang Developer",
 		Spec:    "Backend Development",
 		Tags:    pq.StringArray{"Golang", "Microservices", "REST"}, // Передаем массив строк

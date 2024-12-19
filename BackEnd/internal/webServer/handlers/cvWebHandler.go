@@ -8,6 +8,7 @@ import (
 	"second/internal/models"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 func (h *Handler) CreateCVHandler(c *gin.Context) {
@@ -18,16 +19,13 @@ func (h *Handler) CreateCVHandler(c *gin.Context) {
 		return
 	}
 
+	cv.CVID = uuid.New().String()
+
 	fmt.Printf("Полученные данные: %+v\n", cv)
 
-	if cv.CVID == "" {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "CVID не может быть пустым"})
-		return
-	}
-
-	result := h.DB.Create(&cv)
-	if result.Error != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+	err := resumeHandler.CreateCV(&cv, h.DB)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 

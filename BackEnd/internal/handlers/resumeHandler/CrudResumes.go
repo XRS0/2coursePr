@@ -3,11 +3,13 @@ package resumeHandler
 import (
 	"second/internal/models"
 
+	"github.com/google/uuid"
 	"github.com/lib/pq"
 	"gorm.io/gorm"
 )
 
 func CreateCV(cv *models.CV, db *gorm.DB) error {
+	cv.CVID = uuid.New().String()
 	result := db.Create(cv)
 	return result.Error
 }
