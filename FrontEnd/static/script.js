@@ -30,19 +30,22 @@ function closePopup(event) {
 function createRes() {
   let title = document.getElementById("popup-title").value;
   let descr = document.getElementById("popup-descr").value;
-  let kurs = document.getElementById("popup-kurs").value;
+  let course = document.getElementById("popup-kurs").value;
   let status = document.getElementById("popup-status").value;
   let tag = document.querySelector(".pup-resume-tag").textContent;
+  let cvid = "3124dksfj";
+  let inputUser = document.getElementById("userName");
 
-  if (!title || !descr || !kurs || !status) {
+  if (!title || !descr || !course || !status) {
     alert("Заполните все поля");
     return;
   }
 
   const resumeData = {
+    cvid,
     title,
     descr,
-    kurs,
+    course,
     status,
     tags: selectedTags,
   };
@@ -61,7 +64,7 @@ function createRes() {
           <p class="resume-descr">
             ${descr}
           </p>
-          <p class="resume-descr">${kurs} Курс</p>
+          <p class="resume-descr">${course} Курс</p>
             <p class="resume-descr">${status}</p>
           <div class="resume-tag">
           <p>${selectedTags.join(", ")}</p>
@@ -72,6 +75,7 @@ function createRes() {
 
   let resumeContainer = document.getElementById("resume-container");
   resumeContainer.appendChild(newAnn);
+  sendCV(resumeData);
 
   document.getElementById("popup-title").value = "";
   document.getElementById("popup-descr").value = "";
@@ -99,7 +103,7 @@ function loadResumes() {
       <div>
         <p class="resume-name">${resume.title}</p>
         <p class="resume-descr">${resume.descr}</p>
-        <p class="resume-descr">${resume.kurs} Курс</p>
+        <p class="resume-descr">${resume.course} Курс</p>
         <p class="resume-descr">${resume.status}</p>
         <div class="resume-tag">
           <p>${tags}</p> 
@@ -137,16 +141,13 @@ function restoreSelectedTags() {
     }
   });
 }
-
 document.addEventListener("DOMContentLoaded", restoreSelectedTags);
 
-// Функция для фильтрации резюме по введенному тексту
-function filterResumes() {
-  let searchTerm = document.querySelector(".search-input").value.toLowerCase(); // Получаем текст из поля поиска
-  let resumes = JSON.parse(localStorage.getItem("resumes")) || []; // Получаем все резюме
+function filterResumesName() {
+  let searchTerm = document.querySelector(".search-input").value.toLowerCase();
+  let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
   let resumeContainer = document.getElementById("resume-container");
 
-  // Очищаем контейнер перед добавлением отфильтрованных резюме
   resumeContainer.innerHTML = "";
 
   // Фильтруем резюме по названию
@@ -154,7 +155,6 @@ function filterResumes() {
     resume.title.toLowerCase().includes(searchTerm)
   );
 
-  // Добавляем отфильтрованные резюме на страницу
   filteredResumes.forEach((resume) => {
     let newAnn = document.createElement("div");
     newAnn.classList.add("cont-resume-new");
@@ -165,7 +165,7 @@ function filterResumes() {
       <div>
         <p class="resume-name">${resume.title}</p>
         <p class="resume-descr">${resume.descr}</p>
-        <p class="resume-descr">${resume.kurs} Курс</p>
+        <p class="resume-descr">${resume.course} Курс</p>
         <p class="resume-descr">${resume.status}</p>
         <div class="resume-tag">
           <p>${tags}</p> 
@@ -181,9 +181,9 @@ document
   .querySelector(".search-input")
   .addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-      filterResumes(); // Фильтруем резюме при нажатии "Enter"
+      filterResumesName();
     }
   });
-
-// Также можно добавить кнопку для ручного фильтра
-document.querySelector(".search-butt").addEventListener("click", filterResumes);
+document
+  .querySelector(".search-butt")
+  .addEventListener("click", filterResumesName);

@@ -1,8 +1,6 @@
-// Добавляем функционал для отправки данных пользователя при нажатии кнопки "Войти"
-// Функция для создания пользователя
 async function createUser(UserData) {
   try {
-    const response = await fetch("http://localhost:8080/api/users", {
+    const response = await fetch("http://192.168.71.111:8080/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -14,25 +12,23 @@ async function createUser(UserData) {
       const errorResponse = await response.json();
       throw new Error(errorResponse.message || "Ошибка создания пользователя");
     }
-
     const result = await response.json();
     console.log("Пользователь создан:", result);
     alert("Пользователь успешно создан!");
+    return response;
   } catch (error) {
     console.error("Ошибка:", error);
     alert("Не удалось создать пользователя: " + error.message);
   }
 }
 
-// Локальная база пользователей
-var users = [];
+var users;
+var CVs;
 
-// Получаем элементы ввода
 let inputUser = document.getElementById("userName");
 let inputPassword = document.getElementById("input");
 let loginButton = document.getElementById("login-butt");
 
-// Функция для отправки данных
 function sendData() {
   const UserData = {
     login: inputUser.value,
@@ -49,38 +45,108 @@ function sendData() {
   createUser(UserData);
 }
 
-// Привязываем функцию к кнопке (на случай, если JavaScript загрузится позже)
-loginButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  sendData();
+// loginButton.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   sendData();
+// });
+
+//ФИЛЬТРАЦИЯ
+
+// document.querySelector(".search-butt").addEventListener("click", function () {
+//   let selectCourse = Array.from(
+//     document.querySelectorAll('input[name="course"]:checked')
+//   ).map((checkbox) => checkbox.value);
+//   let selectSpeciality = Array.from(
+//     document.querySelectorAll('input[name="spec"]:checked')
+//   ).map((checkbox) => checkbox.value);
+//   let selectStatus = Array.from(
+//     document.querySelectorAll('input[name="status"]:checked')
+//   ).map((checkbox) => checkbox.value);
+
+//   const filterData = {
+//     courses: selectCourse,
+//     speciality: selectSpeciality,
+//     status: selectStatus,
+//   };
+
+//   fetch(url, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(filterData),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => console.log("Успех:", data))
+//     .catch((error) => console.error("Ошибка:", error));
+// });
+
+async function getAllUsers() {
+  try {
+    const response = await fetch("http://192.168.71.111:8080/users", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(
+        errorResponse.message || "Ошибка получения данных пользователя"
+      );
+    }
+    const result = await response.json();
+    console.log("Пользователь получен:", result);
+    return result;
+  } catch (error) {
+    console.error("Ошибка:", error);
+    alert("Не удалось получить пользователя: " + error.message);
+  }
+}
+document.addEventListener("DOMContentLoaded", async function () {
+  users = await getAllUsers();
 });
 
-//Отправил данные о фильтрации
-document.querySelector(".search-butt").addEventListener("click", function () {
-  let selectCourse = Array.from(
-    document.querySelectorAll('input[name="course"]:checked')
-  ).map((checkbox) => checkbox.value);
-  let selectSpeciality = Array.from(
-    document.querySelectorAll('input[name="spec"]:checked')
-  ).map((checkbox) => checkbox.value);
-  let selectStatus = Array.from(
-    document.querySelectorAll('input[name="status"]:checked')
-  ).map((checkbox) => checkbox.value);
+async function getAllCv() {
+  try {
+    const response = await fetch("http://192.168.71.111:8080/cvs", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  const filterData = {
-    courses: selectCourse,
-    speciality: selectSpeciality,
-    status: selectStatus,
-  };
-
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(filterData),
-  })
-    .then((response) => response.json())
-    .then((data) => console.log("Успех:", data))
-    .catch((error) => console.error("Ошибка:", error));
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Ошибка получения резюме");
+    }
+    const result = await response.json();
+    console.log("Резюме получено:", result);
+    return result;
+  } catch (error) {
+    console.error("Ошибка:", error);
+    alert("Не удалось получить резюме: " + error.message);
+  }
+}
+document.addEventListener("DOMContentLoaded", async function () {
+  CVs = await getAllCv();
 });
+
+async function sendCV(resumeData) {
+  try {
+    const response = await fetch("http://192.168.71.111:8080/cvs", {
+      method: "POST",
+      headers: {
+        "Contetnt-Type": "application/json",
+      },
+      body: JSON.stringify(resumeData),
+    });
+    const result = await response.json();
+    console.log("Пользователь отправлен:", result);
+    return result;
+  } catch (error) {
+    console.error("Ошибка:", error);
+    alert("Не удалось отправить резюме: " + error.message);
+  }
+}
