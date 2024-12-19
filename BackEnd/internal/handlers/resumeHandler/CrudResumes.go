@@ -3,6 +3,7 @@ package resumeHandler
 import (
 	"second/internal/models"
 
+	"github.com/lib/pq"
 	"gorm.io/gorm"
 )
 
@@ -48,13 +49,12 @@ func GetMatchingCVs(db *gorm.DB, params models.FilterParams) ([]models.CV, error
 	// if params.UserID != "" {
 	// 	query = query.Where("user_id = ?", params.UserID)
 	// }
-
 	if params.Spec != "" {
 		query = query.Where("spec = ?", params.Spec)
 	}
 
 	if len(params.Tags) > 0 {
-		query = query.Where("tags && ?", params.Tags)
+		query = query.Where("tags && ?", pq.StringArray(params.Tags))
 	}
 
 	if err := query.Find(&cvs).Error; err != nil {

@@ -35,13 +35,7 @@ func (h *Handler) CreateCVHandler(c *gin.Context) {
 }
 
 func (h *Handler) GetAllCVsHandler(c *gin.Context) {
-	var params models.FilterParams
-
-	if err := c.BindJSON(&params); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	}
-
-	cvs, err := resumeHandler.GetMatchingCVs(h.DB, params)
+	cvs, err := resumeHandler.GetAllCVs(h.DB)
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
@@ -68,10 +62,12 @@ func (h *Handler) GetAllCVsHandler(c *gin.Context) {
 
 func (h *Handler) FilterCVsHandler(c *gin.Context) {
 	var params models.FilterParams
-	if err := c.ShouldBindQuery(&params); err != nil {
+	if err := c.ShouldBindJSON(&params); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid query parameters"})
 		return
 	}
+
+	fmt.Println(params)
 
 	cvs, err := resumeHandler.GetMatchingCVs(h.DB, params)
 	if err != nil {
@@ -90,13 +86,12 @@ func (h *Handler) FilterCVsHandler(c *gin.Context) {
 		}
 		if err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})
+			return
 		}
 		cvsToShow = append(cvsToShow, cvToShow)
 	}
 
 	c.JSON(200, cvsToShow)
-
-	c.JSON(http.StatusOK, cvs)
 }
 
 func (h *Handler) GetCVByIDHandler(c *gin.Context) {

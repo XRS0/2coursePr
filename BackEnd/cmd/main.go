@@ -97,7 +97,8 @@ func main() {
 
 	// Роуты для резюме
 	r.POST("/cvs", handler.CreateCVHandler)
-	r.GET("/cvs", handler.FilterCVsHandler)
+	r.GET("/cvs", handler.GetAllCVsHandler)
+	r.POST("/cvs/filtered", handler.FilterCVsHandler)
 	r.GET("/cvs/:cvid", handler.GetCVByIDHandler)
 	r.PATCH("/cvs/:cvid", handler.UpdateCVHandler)
 	r.DELETE("/cvs/:cvid", handler.DeleteCVHandler)
