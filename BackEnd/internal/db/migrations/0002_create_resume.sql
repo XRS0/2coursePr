@@ -7,4 +7,3 @@ CREATE TABLE cvs (
  		about_me TEXT,
     FOREIGN KEY (user_id) REFERENCES users (uuid)
 );
-

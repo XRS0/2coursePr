@@ -26,6 +26,12 @@ function closePopup(event) {
   }
 }
 
+function saveResumeToLocal(resumeData) {
+  let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
+  resumes.push(resumeData); // Добавляем новое резюме в массив
+  localStorage.setItem("resumes", JSON.stringify(resumes)); // Сохраняем обновленный массив
+}
+
 //Создание резюме
 async function createRes() {
   let title = document.getElementById("popup-title").value;
@@ -36,7 +42,7 @@ async function createRes() {
   let cvid = "";
   let userid = JSON.parse(localStorage.getItem("userUUIDs"));
   console.log("Айди пользователя", userid);
-
+  console.log("Данные резюме:", { title, descr, course, status, tag });
   if (!title || !descr || !course || !status) {
     alert("Заполните все поля");
     return;
@@ -49,28 +55,12 @@ async function createRes() {
     descr,
     status,
     tags: selectedTags,
+    course,
   };
 
-  // let newAnn = document.createElement("div");
-  // newAnn.classList.add("cont-resume-new");
-  // newAnn.innerHTML = `<div>
-  //         <p class="resume-name">${title}</p>
-  //         <p class="resume-descr">
-  //           ${descr}
-  //         </p>
-  //         <p class="resume-descr">${course} Курс</p>
-  //           <p class="resume-descr">${status}</p>
-  //         <div class="resume-tag">
-  //         <p>${selectedTags.join(", ")}</p>
-  //         </div>
-  //         <a href="profile.html" class="resume-butt">Перейти в профиль</a>
-  //       </div>
-  //     </div>`;
+  saveResumeToLocal(resumeData);
 
-  // let resumeContainer = document.getElementById("resume-container");
-  // resumeContainer.appendChild(newAnn);
-  await sendCV(resumeData);
-  await renderCV();
+  renderSingleResume(resumeData);
 
   document.getElementById("popup-title").value = "";
   document.getElementById("popup-descr").value = "";
@@ -84,31 +74,6 @@ async function createRes() {
     .querySelectorAll(".pup-resume-tag")
     .forEach((tag) => tag.classList.remove("highlighted"));
 }
-
-// function loadResumes() {
-//   let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
-//   let resumeContainer = document.getElementById("resume-container");
-//   resumes.forEach((resume) => {
-//     let newAnn = document.createElement("div");
-//     newAnn.classList.add("cont-resume-new");
-
-//     let tags = Array.isArray(resume.tags) ? resume.tags.join(", ") : "";
-
-//     newAnn.innerHTML = `
-//       <div>
-//         <p class="resume-name">${resume.title}</p>
-//         <p class="resume-descr">${resume.descr}</p>
-//         <p class="resume-descr">${resume.course} Курс</p>
-//         <p class="resume-descr">${resume.status}</p>
-//         <div class="resume-tag">
-//           <p>${tags}</p>
-//         </div>
-//         <a href="profile.html" class="resume-butt">Перейти в профиль</a>
-//       </div>`;
-//     resumeContainer.appendChild(newAnn);
-//   });
-// }
-// document.addEventListener("DOMContentLoaded", loadResumes);
 
 let selectedTags = JSON.parse(localStorage.getItem("selectedTags")) || [];
 
@@ -182,3 +147,15 @@ document
 document
   .querySelector(".search-butt")
   .addEventListener("click", filterResumesName);
+
+function loadResumes() {
+  let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
+  resumes.forEach((resume) => {
+    renderSingleResume(resume); // Отображаем каждое резюме
+  });
+}
+
+// Загружаем резюме при загрузке страницы
+document.addEventListener("DOMContentLoaded", function () {
+  loadResumes(); // При загрузке страницы загружаем все резюме
+});

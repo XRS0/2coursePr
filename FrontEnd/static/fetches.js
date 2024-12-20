@@ -154,46 +154,23 @@ async function sendCV(resumeData) {
   }
 }
 
-async function renderCV() {
-  try {
-    const response = await fetch("http://localhost:8080/cvs", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+function renderSingleResume(resume) {
+  let resumeContainer = document.getElementById("resume-container");
+  let newAnn = document.createElement("div");
+  newAnn.classList.add("cont-resume-new");
 
-    if (!response.ok) {
-      const errorResponse = await response.json();
-      throw new Error(errorResponse.message || "Ошибка выведения резюме");
-    }
-    const resumes = await response.json();
-    // resumes.push(resumeData);
-    let resumeContainer = document.getElementById("resume-container");
-    resumes.forEach((resume) => {
-      let newAnn = document.createElement("div");
-      newAnn.classList.add("cont-resume-new");
+  let tags = Array.isArray(resume.tags) ? resume.tags.join(", ") : "";
 
-      let tags = Array.isArray(resume.tags) ? resume.tags.join(", ") : "";
-
-      newAnn.innerHTML = `
-            <div>
-              <p class="resume-name">${resume.title}</p>
-              <p class="resume-descr">${resume.descr}</p>
-              <p class="resume-descr">${resume.course} Курс</p>
-              <p class="resume-descr">${resume.status}</p>
-              <div class="resume-tag">
-                <p>${tags}</p> 
-              </div>
-              <a href="profile.html" class="resume-butt">Перейти в профиль</a>
-            </div>`;
-      resumeContainer.appendChild(newAnn);
-    });
-  } catch (error) {
-    console.error("Ошибка:", error);
-    alert("Не удалось вывести резюме: " + error.message);
-  }
+  newAnn.innerHTML = `
+    <div>
+      <p class="resume-name">${resume.title}</p>
+      <p class="resume-descr">${resume.descr}</p>
+      <p class="resume-descr">${resume.course} Курс</p>
+      <p class="resume-descr">${resume.status}</p>
+      <div class="resume-tag">
+        <p>${tags}</p>
+      </div>
+      <a href="profile.html" class="resume-butt">Перейти в профиль</a>
+    </div>`;
+  resumeContainer.appendChild(newAnn);
 }
-
-document.addEventListener("DOMContentLoaded", loadResumes);
-resumeContainer.appendChild(newAnn);
