@@ -27,14 +27,14 @@ function closePopup(event) {
 }
 
 //Создание резюме
-function createRes() {
+async function createRes() {
   let title = document.getElementById("popup-title").value;
   let descr = document.getElementById("popup-descr").value;
   let course = document.getElementById("popup-kurs").value;
   let status = document.getElementById("popup-status").value;
   let tag = document.querySelector(".pup-resume-tag").textContent;
   let cvid = "";
-  let userid = localStorage.getItem("userUUIDs");
+  let userid = JSON.parse(localStorage.getItem("userUUIDs"));
   console.log("Айди пользователя", userid);
 
   if (!title || !descr || !course || !status) {
@@ -43,7 +43,7 @@ function createRes() {
   }
 
   const resumeData = {
-    userid: userid,
+    userid: userid[0],
     cvid,
     title,
     descr,
@@ -51,30 +51,26 @@ function createRes() {
     tags: selectedTags,
   };
 
-  let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
-  resumes.push(resumeData);
-  // Сохранение массива в localStorage
-  localStorage.setItem("resumes", JSON.stringify(resumes));
+  // let newAnn = document.createElement("div");
+  // newAnn.classList.add("cont-resume-new");
+  // newAnn.innerHTML = `<div>
+  //         <p class="resume-name">${title}</p>
+  //         <p class="resume-descr">
+  //           ${descr}
+  //         </p>
+  //         <p class="resume-descr">${course} Курс</p>
+  //           <p class="resume-descr">${status}</p>
+  //         <div class="resume-tag">
+  //         <p>${selectedTags.join(", ")}</p>
+  //         </div>
+  //         <a href="profile.html" class="resume-butt">Перейти в профиль</a>
+  //       </div>
+  //     </div>`;
 
-  let newAnn = document.createElement("div");
-  newAnn.classList.add("cont-resume-new");
-  newAnn.innerHTML = `<div>
-          <p class="resume-name">${title}</p>
-          <p class="resume-descr">
-            ${descr}
-          </p>
-          <p class="resume-descr">${course} Курс</p>
-            <p class="resume-descr">${status}</p>
-          <div class="resume-tag">
-          <p>${selectedTags.join(", ")}</p>
-          </div>
-          <a href="profile.html" class="resume-butt">Перейти в профиль</a>
-        </div>
-      </div>`;
-
-  let resumeContainer = document.getElementById("resume-container");
-  resumeContainer.appendChild(newAnn);
-  sendCV(resumeData);
+  // let resumeContainer = document.getElementById("resume-container");
+  // resumeContainer.appendChild(newAnn);
+  await sendCV(resumeData);
+  await renderCV();
 
   document.getElementById("popup-title").value = "";
   document.getElementById("popup-descr").value = "";
@@ -89,30 +85,30 @@ function createRes() {
     .forEach((tag) => tag.classList.remove("highlighted"));
 }
 
-function loadResumes() {
-  let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
-  let resumeContainer = document.getElementById("resume-container");
-  resumes.forEach((resume) => {
-    let newAnn = document.createElement("div");
-    newAnn.classList.add("cont-resume-new");
+// function loadResumes() {
+//   let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
+//   let resumeContainer = document.getElementById("resume-container");
+//   resumes.forEach((resume) => {
+//     let newAnn = document.createElement("div");
+//     newAnn.classList.add("cont-resume-new");
 
-    let tags = Array.isArray(resume.tags) ? resume.tags.join(", ") : "";
+//     let tags = Array.isArray(resume.tags) ? resume.tags.join(", ") : "";
 
-    newAnn.innerHTML = `
-      <div>
-        <p class="resume-name">${resume.title}</p>
-        <p class="resume-descr">${resume.descr}</p>
-        <p class="resume-descr">${resume.course} Курс</p>
-        <p class="resume-descr">${resume.status}</p>
-        <div class="resume-tag">
-          <p>${tags}</p> 
-        </div>
-        <a href="profile.html" class="resume-butt">Перейти в профиль</a>
-      </div>`;
-    resumeContainer.appendChild(newAnn);
-  });
-}
-document.addEventListener("DOMContentLoaded", loadResumes);
+//     newAnn.innerHTML = `
+//       <div>
+//         <p class="resume-name">${resume.title}</p>
+//         <p class="resume-descr">${resume.descr}</p>
+//         <p class="resume-descr">${resume.course} Курс</p>
+//         <p class="resume-descr">${resume.status}</p>
+//         <div class="resume-tag">
+//           <p>${tags}</p>
+//         </div>
+//         <a href="profile.html" class="resume-butt">Перейти в профиль</a>
+//       </div>`;
+//     resumeContainer.appendChild(newAnn);
+//   });
+// }
+// document.addEventListener("DOMContentLoaded", loadResumes);
 
 let selectedTags = JSON.parse(localStorage.getItem("selectedTags")) || [];
 

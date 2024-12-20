@@ -84,7 +84,7 @@ let loginButton = document.getElementById("login-butt");
 
 async function getAllUsers() {
   try {
-    const response = await fetch("http://192.168.71.111:8080/users", {
+    const response = await fetch("http://localhost:8080/users", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 async function getAllCv() {
   try {
-    const response = await fetch("http://192.168.71.111:8080/cvs", {
+    const response = await fetch("http://localhost:8080/cvs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 async function sendCV(resumeData) {
   try {
-    const response = await fetch("http://192.168.71.111:8080/cvs", {
+    const response = await fetch("http://localhost:8080/cvs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -153,3 +153,47 @@ async function sendCV(resumeData) {
     alert("Не удалось отправить резюме: " + error.message);
   }
 }
+
+async function renderCV() {
+  try {
+    const response = await fetch("http://localhost:8080/cvs", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Ошибка выведения резюме");
+    }
+    const resumes = await response.json();
+    // resumes.push(resumeData);
+    let resumeContainer = document.getElementById("resume-container");
+    resumes.forEach((resume) => {
+      let newAnn = document.createElement("div");
+      newAnn.classList.add("cont-resume-new");
+
+      let tags = Array.isArray(resume.tags) ? resume.tags.join(", ") : "";
+
+      newAnn.innerHTML = `
+            <div>
+              <p class="resume-name">${resume.title}</p>
+              <p class="resume-descr">${resume.descr}</p>
+              <p class="resume-descr">${resume.course} Курс</p>
+              <p class="resume-descr">${resume.status}</p>
+              <div class="resume-tag">
+                <p>${tags}</p> 
+              </div>
+              <a href="profile.html" class="resume-butt">Перейти в профиль</a>
+            </div>`;
+      resumeContainer.appendChild(newAnn);
+    });
+  } catch (error) {
+    console.error("Ошибка:", error);
+    alert("Не удалось вывести резюме: " + error.message);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadResumes);
+resumeContainer.appendChild(newAnn);
