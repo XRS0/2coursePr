@@ -14,6 +14,15 @@ function hide() {
   }
 }
 
+function sendData(event) {
+  let username = document.getElementById("userName");
+  let password = document.getElementById("input");
+  if (username.value === "" || password.value === "") {
+    event.preventDefault();
+    alert("Пожалуйста, введите данные");
+  }
+}
+
 //Открыть Pop-up, закрыть
 function showPopup() {
   document.getElementById("popup").classList.add("active");
@@ -151,11 +160,10 @@ document
 function loadResumes() {
   let resumes = JSON.parse(localStorage.getItem("resumes")) || [];
   resumes.forEach((resume) => {
-    renderSingleResume(resume); // Отображаем каждое резюме
+    renderSingleResume(resume);
   });
 }
 
-// Загружаем резюме при загрузке страницы
 document.addEventListener("DOMContentLoaded", function () {
-  loadResumes(); // При загрузке страницы загружаем все резюме
+  loadResumes();
 });
