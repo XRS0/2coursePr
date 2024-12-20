@@ -1,78 +1,15 @@
 package main
 
 import (
-	"log"
 	"second/internal/db"
-	"second/internal/handlers/resumeHandler"
-	"second/internal/handlers/userHandler"
-	"second/internal/models"
 	"second/internal/webServer/handlers"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
-	"github.com/lib/pq"
 )
 
 func main() {
 	DB := db.InitDB()
-	// Пример: Создание пользователя
-	user := models.User{
-		UUID:        "i23s0119",
-		Password:    "password",
-		Course:      5,
-		LFM:         "John Doe",
-		IsAdmin:     false,
-		ContactData: "email@example.com",
-		Status:      "active",
-	}
-
-	err := userHandler.CreateUser(&user, DB)
-	if err != nil {
-		log.Fatalf("Ошибка создания пользователя: %v", err)
-	}
-
-	// Пример: Создание резюме для пользователя
-	cv := &models.CV{
-		UserID:  uuid.New().String(),
-		Title:   "Golang Developer",
-		Spec:    "Backend Development",
-		Tags:    pq.StringArray{"Golang", "Microservices", "REST"}, // Передаем массив строк
-		AboutMe: "Experienced Go developer.",
-	}
-
-	err = resumeHandler.CreateCV(cv, DB)
-	if err != nil {
-		log.Println("Ошибка создания резюме:", err)
-	} else {
-		log.Println("Резюме успешно создано!")
-	}
-
-	// Пример: Получение пользователя с его резюме
-	foundUser, err := userHandler.GetUserByUUID(user.UUID, DB)
-	if err != nil {
-		log.Fatalf("Ошибка получения пользователя: %v", err)
-	}
-	log.Printf("Пользователь: %+v", foundUser)
-
-	// Пример: Обновление статуса пользователя
-	err = userHandler.UpdateUser(user.UUID, map[string]interface{}{"Status": "inactive"}, DB)
-	if err != nil {
-		log.Fatalf("Ошибка обновления пользователя: %v", err)
-	}
-
-	// Пример: Удаление резюме
-	err = resumeHandler.DeleteCV(cv.CVID, DB)
-	if err != nil {
-		log.Fatalf("Ошибка удаления резюме: %v", err)
-	}
-
-	// Пример: Удаление пользователя
-	err = userHandler.DeleteUser(user.UUID, DB)
-	if err != nil {
-		log.Fatalf("Ошибка удаления пользователя: %v", err)
-	}
-
 	handler := &handlers.Handler{
 		DB: DB,
 	}
@@ -86,6 +23,9 @@ func main() {
 		ExposeHeaders:    []string{"*"},
 		AllowCredentials: true,
 	}))
+
+	// Роут для аутентификации
+	r.POST("/auth", handler.Auth)
 
 	// Роуты для пользователей
 	r.POST("/users", handler.CreateUserHandler)

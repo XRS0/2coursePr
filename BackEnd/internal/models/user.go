@@ -7,6 +7,5 @@ type User struct {
 	LFM         string
 	IsAdmin     bool
 	ContactData string
-	Status      string
 	CVs         []CV `gorm:"foreignKey:UserID"`
 }
