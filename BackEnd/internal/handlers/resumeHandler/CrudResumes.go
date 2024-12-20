@@ -45,7 +45,7 @@ func GetMatchingCVs(db *gorm.DB, params models.FilterParams) ([]models.CV, error
 	query := db.Model(&models.CV{})
 
 	if len(params.Specs) > 0 {
-		query = query.Where("spec && &", params.Specs)
+		query = query.Where("spec IN ?", params.Specs)
 	}
 
 	if len(params.Tags) > 0 {
