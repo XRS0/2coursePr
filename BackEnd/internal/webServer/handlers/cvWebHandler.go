@@ -45,9 +45,10 @@ func (h *Handler) GetAllCVsHandler(c *gin.Context) {
 	for _, cv := range cvs {
 		user, err := userHandler.GetUserByUUID(cv.UserID, h.DB)
 		var cvToShow = models.CVToShow{
-			Cv:     cv,
-			LFM:    user.LFM,
-			Course: user.Course,
+			Cv:          cv,
+			LFM:         user.LFM,
+			Course:      user.Course,
+			ContactData: user.ContactData,
 		}
 		if err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})

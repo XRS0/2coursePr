@@ -14,7 +14,8 @@ type CV struct {
 }
 
 type CVToShow struct {
-	Cv     CV
-	LFM    string
-	Course int
+	Cv          CV
+	LFM         string
+	Course      int
+	ContactData string
 }
